@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Redirecting...</title>
+
+	<script>
+		setTimeout(function () {
+			window.location.href = "https://www.google.com/";
+		}, 5000);
+	</script>
+
+	<style>
+		/* Reset & Base */
+		*, *::before, *::after {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		html, body {
+			height: 100%;
+			background: #263238;
+			font-family: "Nunito", sans-serif;
+			color: #44b9ff;
+		}
+
+		.container {
+			min-height: 100vh;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			padding: 20px;
+			text-align: center;
+		}
+
+		.tittle h2,
+		.subtitle h3 {
+			margin-bottom: 20px;
+			letter-spacing: 2px;
+			text-transform: uppercase;
+		}
+
+		.tittle h2 {
+			font-size: 2rem;
+		}
+
+		.subtitle h3 {
+			font-size: 1.2rem;
+			color: #31d8ff;
+		}
+
+		.square-container {
+			display: flex;
+			gap: 8px;
+			margin: 30px 0;
+		}
+
+		.square {
+			width: 30px;
+			height: 30px;
+			border-radius: 7px;
+			animation: rotating 2.5s ease infinite;
+		}
+
+		.square1 { background: #736efe; animation-delay: 0.2s; }
+		.square2 { background: #5999ff; animation-delay: 0.4s; }
+		.square3 { background: #44b9ff; animation-delay: 0.6s; }
+		.square4 { background: #31d8ff; animation-delay: 0.8s; }
+		.square5 { background: #18ffff; animation-delay: 1s; }
+
+		@keyframes rotating {
+			0% { transform: rotate(0) scale(1); }
+			50% { transform: rotate(90deg) scale(0.6); }
+			100% { transform: rotate(90deg) scale(1); }
+		}
+
+		footer {
+			margin-top: auto;
+			text-align: center;
+			padding: 20px;
+			font-size: 0.95rem;
+			color: #31d8ff;
+		}
+
+		footer a {
+			color: #736efe;
+			text-decoration: underline;
+		}
+
+		/* Responsive Tweaks */
+		@media (max-width: 480px) {
+			.tittle h2 {
+				font-size: 1.5rem;
+			}
+			.subtitle h3 {
+				font-size: 1rem;
+			}
+			.square {
+				width: 24px;
+				height: 24px;
+			}
+		}
+	</style>
+</head>
+<body>
+	<section class="container">
+		<div class="tittle">
+			<h2>Redirecting...</h2>
+		</div>
+		<div class="subtitle">
+			<h3>This page has been moved permanently.</h3>
+		</div>
+		<div class="square-container">
+			<div class="square square1">&nbsp;</div>
+			<div class="square square2">&nbsp;</div>
+			<div class="square square3">&nbsp;</div>
+			<div class="square square4">&nbsp;</div>
+			<div class="square square5">&nbsp;</div>
+		</div>
+	</section>
+	<footer>
+		<h4>You should be redirected in the next 5 seconds.</h4>
+	</footer>
+</body>
+</html>
