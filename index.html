@@ -1,128 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>Redirecting...</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Loading Dots</title>
+<style>
+/* KEYFRAMES */
+@keyframes pulse {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0.25;
+    transform: scale(0.75);
+  }
+}
 
-	<script>
-		setTimeout(function () {
-			window.location.href = "https://www.google.com/";
-		}, 1000);
-	</script>
+/* RESET AND BODY */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-	<style>
-		/* Reset & Base */
-		*, *::before, *::after {
-			margin: 0;
-			padding: 0;
-			box-sizing: border-box;
-		}
+body {
+  min-height: 100vh;
+  background-color: #1d2630;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial, sans-serif;
+}
 
-		html, body {
-			height: 100%;
-			background: #263238;
-			font-family: "Nunito", sans-serif;
-			color: #44b9ff;
-		}
+/* SPINNER BOX */
+.spinner-box {
+  width: 120px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+}
 
-		.container {
-			min-height: 100vh;
-			display: flex;
-			flex-direction: column;
-			justify-content: center;
-			align-items: center;
-			padding: 20px;
-			text-align: center;
-		}
+/* PULSE BUBBLES */
+.pulse-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
-		.tittle h2,
-		.subtitle h3 {
-			margin-bottom: 20px;
-			letter-spacing: 2px;
-			text-transform: uppercase;
-		}
+.pulse-bubble {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #3ff9dc;
+}
 
-		.tittle h2 {
-			font-size: 2rem;
-		}
-
-		.subtitle h3 {
-			font-size: 1.2rem;
-			color: #31d8ff;
-		}
-
-		.square-container {
-			display: flex;
-			gap: 8px;
-			margin: 30px 0;
-		}
-
-		.square {
-			width: 30px;
-			height: 30px;
-			border-radius: 7px;
-			animation: rotating 2.5s ease infinite;
-		}
-
-		.square1 { background: #736efe; animation-delay: 0.2s; }
-		.square2 { background: #5999ff; animation-delay: 0.4s; }
-		.square3 { background: #44b9ff; animation-delay: 0.6s; }
-		.square4 { background: #31d8ff; animation-delay: 0.8s; }
-		.square5 { background: #18ffff; animation-delay: 1s; }
-
-		@keyframes rotating {
-			0% { transform: rotate(0) scale(1); }
-			50% { transform: rotate(90deg) scale(0.6); }
-			100% { transform: rotate(90deg) scale(1); }
-		}
-
-		footer {
-			margin-top: auto;
-			text-align: center;
-			padding: 20px;
-			font-size: 0.95rem;
-			color: #31d8ff;
-		}
-
-		footer a {
-			color: #736efe;
-			text-decoration: underline;
-		}
-
-		/* Responsive Tweaks */
-		@media (max-width: 480px) {
-			.tittle h2 {
-				font-size: 1.5rem;
-			}
-			.subtitle h3 {
-				font-size: 1rem;
-			}
-			.square {
-				width: 24px;
-				height: 24px;
-			}
-		}
-	</style>
+.pulse-bubble-1 {
+    animation: pulse 0.4s ease 0s infinite alternate;
+}
+.pulse-bubble-2 {
+    animation: pulse 0.4s ease 0.2s infinite alternate;
+}
+.pulse-bubble-3 {
+    animation: pulse 0.4s ease 0.4s infinite alternate;
+}
+</style>
 </head>
 <body>
-	<section class="container">
-		<div class="tittle">
-			<h2>Redirecting...</h2>
-		</div>
-		<div class="subtitle">
-			<h3>This page has been moved permanently.</h3>
-		</div>
-		<div class="square-container">
-			<div class="square square1">&nbsp;</div>
-			<div class="square square2">&nbsp;</div>
-			<div class="square square3">&nbsp;</div>
-			<div class="square square4">&nbsp;</div>
-			<div class="square square5">&nbsp;</div>
-		</div>
-	</section>
-	<footer>
-		<h4>You should be redirected in the next 5 seconds.</h4>
-	</footer>
+
+<!-- LOADING DOTS -->
+<div class="spinner-box">
+  <div class="pulse-container">  
+    <div class="pulse-bubble pulse-bubble-1"></div>
+    <div class="pulse-bubble pulse-bubble-2"></div>
+    <div class="pulse-bubble pulse-bubble-3"></div>
+  </div>
+</div>
+
+<script>
+// 2 seconds ke baad Instagram.com redirect
+setTimeout(function() {
+    window.location.href = "https://www.instagram.com";
+}, 2000);
+</script>
+
 </body>
 </html>
