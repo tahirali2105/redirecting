@@ -1,91 +1,3188 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Loading Dots</title>
-<style>
-/* KEYFRAMES */
-@keyframes pulse {
-  from {
-    opacity: 1;
-    transform: scale(1);
-  }
-  to {
-    opacity: 0.25;
-    transform: scale(0.75);
-  }
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ITSupportX - Complete IT Support Solutions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ----------------- GLOBAL VARIABLES ----------------- */
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --primary-light: #3b82f6;
+            --secondary: #10b981;
+            --secondary-dark: #059669;
+            --accent: #8b5cf6;
+            --text: #1e293b;
+            --text-light: #64748b;
+            --text-lighter: #94a3b8;
+            --bg: #f8fafc;
+            --bg-card: #ffffff;
+            --bg-dark: #0f172a;
+            --border: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --radius: 12px;
+            --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --transition-slow: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 
-/* RESET AND BODY */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+            /* Auth Modal Variables */
+            --auth-primary: #2563eb;
+            --auth-primary-dark: #1d4ed8;
+            --auth-text: #1e293b;
+            --auth-text-light: #64748b;
+            --auth-bg: #f8fafc;
+            --auth-radius: 12px;
+            --auth-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --auth-transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
 
-body {
-  min-height: 100vh;
-  background-color: #ffffff; /* White background */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: Arial, sans-serif;
-}
+        /* ----------------- BASE STYLES ----------------- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
 
-/* SPINNER BOX */
-.spinner-box {
-  width: 120px;
-  height: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: transparent;
-}
+        html {
+            scroll-behavior: smooth;
+        }
 
-/* PULSE BUBBLES */
-.pulse-container {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
 
-.pulse-bubble {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background-color: #1d2630; /* Dark color for white background */
-}
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
 
-.pulse-bubble-1 {
-    animation: pulse 0.4s ease 0s infinite alternate;
-}
-.pulse-bubble-2 {
-    animation: pulse 0.4s ease 0.2s infinite alternate;
-}
-.pulse-bubble-3 {
-    animation: pulse 0.4s ease 0.4s infinite alternate;
-}
-</style>
+        ul {
+            list-style: none;
+        }
+
+        button {
+            cursor: pointer;
+            border: none;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .section-title h2 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--text);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 2px;
+        }
+
+        .section-title p {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 14px 28px;
+            border-radius: var(--radius);
+            font-weight: 600;
+            font-size: 1rem;
+            transition: var(--transition);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: var(--transition-slow);
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            box-shadow: var(--shadow);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-secondary {
+            background: var(--secondary);
+            color: white;
+            box-shadow: var(--shadow);
+        }
+
+        .btn-secondary:hover {
+            background: var(--secondary-dark);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .card {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 30px;
+            transition: var(--transition);
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: var(--transition);
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .card:hover::before {
+            transform: scaleX(1);
+        }
+
+        /* ----------------- BACKGROUND ELEMENTS ----------------- */
+        .bg-element {
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-light), var(--accent));
+            opacity: 0.05;
+            z-index: 0;
+        }
+
+        .bg-element-1 {
+            width: 300px;
+            height: 300px;
+            top: 10%;
+            left: 5%;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .bg-element-2 {
+            width: 200px;
+            height: 200px;
+            bottom: 15%;
+            right: 8%;
+            animation: float 15s infinite ease-in-out reverse;
+        }
+
+        .bg-element-3 {
+            width: 150px;
+            height: 150px;
+            top: 40%;
+            left: 70%;
+            animation: float 25s infinite ease-in-out;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-20px) rotate(180deg);
+            }
+        }
+
+        /* ----------------- NAVIGATION ----------------- */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 18px 0;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+
+        nav.scrolled {
+            padding: 12px 0;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 800;
+            font-size: 1.6rem;
+            color: var(--primary);
+            transition: var(--transition);
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .logo-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 900;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .logo:hover .logo-icon {
+            transform: rotate(15deg);
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+            margin: 0 auto;
+        }
+
+        .nav-menu li a {
+            color: var(--text);
+            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: 8px;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-menu li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: var(--transition);
+            transform: translateX(-50%);
+        }
+
+        .nav-menu li a:hover {
+            color: var(--primary);
+        }
+
+        .nav-menu li a:hover::after {
+            width: 80%;
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .mobile-actions {
+            display: none;
+            gap: 10px;
+            align-items: center;
+        }
+
+        /* ----------------- MOBILE SIDEBAR ----------------- */
+        .mobile-menu-btn {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 21px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            position: relative;
+            z-index: 1001;
+        }
+
+        .mobile-menu-btn span {
+            display: block;
+            height: 3px;
+            width: 100%;
+            background-color: var(--text);
+            border-radius: 3px;
+            transition: var(--transition);
+            transform-origin: center;
+        }
+
+        .mobile-menu-btn.active span:nth-child(1) {
+            transform: translateY(9px) rotate(45deg);
+        }
+
+        .mobile-menu-btn.active span:nth-child(2) {
+            opacity: 0;
+            transform: scale(0);
+        }
+
+        .mobile-menu-btn.active span:nth-child(3) {
+            transform: translateY(-9px) rotate(-45deg);
+        }
+
+        .mobile-sidebar {
+            position: fixed;
+            top: 0;
+            right: -350px;
+            width: 350px;
+            height: 100vh;
+            background: var(--bg-card);
+            z-index: 2000;
+            padding: 80px 30px 40px;
+            transition: var(--transition-slow);
+            box-shadow: -5px 0 30px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mobile-sidebar.active {
+            right: 0;
+        }
+
+        .mobile-sidebar .logo {
+            margin-bottom: 40px;
+            font-size: 1.4rem;
+            justify-content: center;
+        }
+
+        .mobile-sidebar-close {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            color: var(--text-light);
+            cursor: pointer;
+            transition: var(--transition);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .mobile-sidebar-close:hover {
+            color: var(--text);
+            background: var(--bg);
+        }
+
+        .mobile-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+
+        .mobile-nav li a {
+            display: block;
+            padding: 16px 20px;
+            color: var(--text);
+            font-weight: 600;
+            border-radius: 10px;
+            transition: var(--transition);
+            border: 1px solid var(--border);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mobile-nav li a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+            transition: var(--transition);
+            opacity: 0.1;
+        }
+
+        .mobile-nav li a:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateX(10px);
+            border-color: var(--primary);
+        }
+
+        .mobile-nav li a:hover::before {
+            left: 100%;
+        }
+
+        .mobile-sidebar-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: auto;
+            padding-top: 30px;
+            border-top: 1px solid var(--border);
+        }
+
+        .sidebar-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1999;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            backdrop-filter: blur(5px);
+        }
+
+        .sidebar-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* ----------------- HERO SECTION ----------------- */
+        .hero {
+            padding: 180px 0 120px;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 60%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="%23dbeafe" opacity="0.4"/></svg>');
+            background-size: cover;
+        }
+
+        .hero-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            color: var(--text);
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .hero-content h1 span {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            color: var(--text-light);
+            margin-bottom: 35px;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .hero-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .feature-tag {
+            background: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--primary);
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+        }
+
+        .feature-tag:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .msme-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-top: 20px;
+            box-shadow: var(--shadow);
+        }
+
+        .hero-card {
+            background: white;
+            border-radius: var(--radius);
+            padding: 35px;
+            box-shadow: var(--shadow-xl);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.03), rgba(139, 92, 246, 0.03));
+            z-index: 1;
+        }
+
+        .hero-card>* {
+            position: relative;
+            z-index: 2;
+        }
+
+        .quick-contact-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .quick-contact-title i {
+            color: var(--primary);
+        }
+
+        .quick-contact {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px 20px;
+            background: var(--bg);
+            border-radius: 10px;
+            transition: var(--transition);
+            border: 1px solid transparent;
+        }
+
+        .contact-item:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateX(5px);
+            border-color: var(--primary);
+        }
+
+        .contact-item i {
+            font-size: 1.3rem;
+            width: 24px;
+            transition: var(--transition);
+        }
+
+        .contact-item:hover i {
+            transform: scale(1.2);
+        }
+
+        .quick-links {
+            display: flex;
+            gap: 12px;
+        }
+
+        /* ----------------- SERVICES SECTION ----------------- */
+        .services {
+            background: var(--bg);
+            position: relative;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            text-align: center;
+            padding: 50px 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 0;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            transition: var(--transition);
+            z-index: 0;
+            opacity: 0.05;
+        }
+
+        .service-card:hover::after {
+            height: 100%;
+        }
+
+        .service-icon {
+            width: 90px;
+            height: 90px;
+            margin: 0 auto 25px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            box-shadow: var(--shadow-lg);
+            transition: var(--transition);
+            position: relative;
+            z-index: 2;
+        }
+
+        .service-card:hover .service-icon {
+            transform: scale(1.1) rotate(10deg);
+        }
+
+        .service-card h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--text);
+            position: relative;
+            z-index: 2;
+        }
+
+        .service-card p {
+            color: var(--text-light);
+            margin-bottom: 25px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* PRICING SECTION STYLES */
+        .pricing {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            position: relative;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            align-items: stretch;
+        }
+
+        .pricing-card {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            position: relative;
+            transition: all 0.3s ease;
+            border: 1px solid #e2e8f0;
+        }
+
+        .pricing-card.featured {
+            border: 2px solid var(--primary);
+            transform: scale(1.02);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        .pricing-badge {
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--secondary), var(--secondary-dark));
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.8rem;
+            z-index: 10;
+            box-shadow: 0 4px 6px rgba(16, 185, 129, 0.3);
+        }
+
+        .pricing-header {
+            text-align: center;
+            padding: 30px 20px;
+            border-bottom: 1px solid #e2e8f0;
+            background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+        }
+
+        .pricing-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 10px;
+        }
+
+        .pricing-price {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            line-height: 1;
+            margin-bottom: 5px;
+        }
+
+        .pricing-period {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .pricing-features {
+            flex: 1;
+            padding: 30px 25px;
+        }
+
+        .pricing-features ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .pricing-features li {
+            padding: 12px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            border-bottom: 1px solid #f1f5f9;
+            transition: all 0.2s ease;
+        }
+
+        .pricing-features li:last-child {
+            border-bottom: none;
+        }
+
+        .pricing-features li:hover {
+            transform: translateX(5px);
+            color: var(--primary);
+        }
+
+        .pricing-features li i {
+            color: var(--secondary);
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+
+        .pricing-footer {
+            padding: 0 25px 30px;
+            text-align: center;
+        }
+
+        .pricing-footer .btn {
+            width: 100%;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        /* Pricing Toggle Styles */
+        .pricing-toggle {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 50px;
+            background: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            max-width: 300px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .toggle-label {
+            font-weight: 600;
+            color: var(--text-light);
+            transition: all 0.3s ease;
+        }
+
+        .toggle-label.active {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 30px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #cbd5e1;
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 22px;
+            width: 22px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked+.slider {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+        }
+
+        input:checked+.slider:before {
+            transform: translateX(30px);
+        }
+
+        /* ----------------- WORKFLOW SECTION ----------------- */
+        .workflow-steps {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+            max-width: 1100px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .workflow-steps::before {
+            content: '';
+            position: absolute;
+            top: 60px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            opacity: 0.2;
+            z-index: 1;
+        }
+
+        .workflow-step {
+            flex: 1;
+            min-width: 250px;
+            max-width: 280px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .step-number {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.8rem;
+            margin: 0 auto 25px;
+            box-shadow: var(--shadow-lg);
+            transition: var(--transition);
+            position: relative;
+            z-index: 2;
+        }
+
+        .workflow-step:hover .step-number {
+            transform: scale(1.1) rotate(10deg);
+        }
+
+        .workflow-step h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--text);
+        }
+
+        .workflow-step p {
+            color: var(--text-light);
+        }
+
+        /* ----------------- REMOTE ASSISTANCE SECTION ----------------- */
+        /* Remote Tools Detail Section Styles - Light Theme */
+        .remote-tools-detail {
+            margin-top: 60px;
+            padding-top: 40px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .remote-tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .remote-card {
+            padding: 0;
+            border: 1px solid #e2e8f0;
+            background: white;
+            transition: all 0.3s ease;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .remote-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-header {
+            background: white;
+            color: var(--text);
+            padding: 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-bottom: 1px solid #e2e8f0;
+            justify-content: center;
+            /* Added center alignment */
+            text-align: center;
+            /* Added center text alignment */
+        }
+
+        .card-header i {
+            font-size: 1.5rem;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 10px;
+            color: white;
+        }
+
+        .card-header h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin: 0;
+            color: var(--text);
+        }
+
+        .feature-grid {
+            padding: 25px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            background: white;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            background: white;
+            border: 1px solid #f1f5f9;
+        }
+
+        .feature-item:hover {
+            background: #f8fafc;
+            transform: translateX(5px);
+            border-color: #e2e8f0;
+        }
+
+        .feature-item i {
+            width: 40px;
+            height: 40px;
+            background: #f8fafc;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 1.1rem;
+            flex-shrink: 0;
+            border: 1px solid #e2e8f0;
+        }
+
+        .feature-item:hover i {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .feature-item span {
+            font-weight: 600;
+            color: var(--text);
+            font-size: 0.95rem;
+        }
+
+        /* ----------------- REMOTE ASSISTANCE SECTION ----------------- */
+        .remote-assistance {
+            background: var(--bg);
+            position: relative;
+        }
+
+        .remote-tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .remote-tool-card {
+            text-align: center;
+            padding: 30px 20px;
+            transition: var(--transition);
+        }
+
+        .remote-tool-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .tool-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.8rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .remote-tool-card:hover .tool-icon {
+            transform: scale(1.1) rotate(10deg);
+        }
+
+        .remote-tool-card h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--text);
+        }
+
+        .remote-tool-card p {
+            color: var(--text-light);
+            margin-bottom: 20px;
+        }
+
+
+        /* ----------------- ASSEMBLE SECTION ----------------- */
+        .assemble {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            position: relative;
+        }
+
+        .assemble-container {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 50px;
+        }
+
+        .assemble-main {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .assemble-price {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+
+        .assemble-features {
+            margin: 25px 0;
+        }
+
+        .assemble-features li {
+            padding: 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .assemble-features li i {
+            color: var(--secondary);
+            font-size: 1.1rem;
+        }
+
+        .assemble-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .addon-card {
+            padding: 25px;
+        }
+
+        .addon-card h4 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .addon-card h4 i {
+            color: var(--primary);
+        }
+
+        .addon-list li {
+            padding: 12px 0;
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px dashed var(--border);
+            transition: var(--transition);
+        }
+
+        .addon-list li:hover {
+            transform: translateX(5px);
+        }
+
+        .addon-price {
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        /* ----------------- CONTACT SECTION ----------------- */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+
+        .contact-info h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--text);
+        }
+
+        .contact-info p {
+            color: var(--text-light);
+            margin-bottom: 35px;
+            font-size: 1.1rem;
+        }
+
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .contact-detail {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.4rem;
+            flex-shrink: 0;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .contact-detail:hover .contact-icon {
+            transform: scale(1.1) rotate(10deg);
+        }
+
+        .contact-text h4 {
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--text);
+            font-size: 1.2rem;
+        }
+
+        .contact-text p {
+            color: var(--text-light);
+            margin: 0;
+        }
+
+        .contact-form {
+            padding: 40px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 15px 20px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: var(--transition);
+            background: var(--bg);
+        }
+
+        .form-control:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+            transform: translateY(-2px);
+        }
+
+        textarea.form-control {
+            min-height: 140px;
+            resize: vertical;
+        }
+
+        /* ----------------- FOOTER ----------------- */
+        footer {
+            background: var(--bg-dark);
+            color: white;
+            padding: 80px 0 30px;
+            position: relative;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+
+        .footer-col h4 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+            color: white;
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-col h4::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        .footer-col p {
+            color: #cbd5e1;
+            margin-bottom: 25px;
+            line-height: 1.7;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-col ul li a {
+            color: #cbd5e1;
+            transition: var(--transition);
+            display: inline-block;
+        }
+
+        .footer-col ul li a:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .social-links a {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #334155;
+            color: #94a3b8;
+            font-size: 0.95rem;
+        }
+
+        /* ----------------- MODAL STYLES ----------------- */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 3000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: var(--radius);
+            width: 100%;
+            max-width: 600px;
+            padding: 40px;
+            box-shadow: var(--shadow-xl);
+            animation: modalSlideIn 0.4s ease;
+            position: relative;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        /* Modal Scrollbar Styling */
+        .modal-content::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .modal-content::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        .modal-content::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 10px;
+        }
+
+        .modal-content::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-dark);
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-30px) scale(0.9);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .modal-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .modal-close {
+            background: none;
+            font-size: 1.8rem;
+            color: var(--text-light);
+            cursor: pointer;
+            transition: var(--transition);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .modal-close:hover {
+            color: var(--text);
+            background: var(--bg);
+        }
+
+        .modal-subtitle {
+            color: var(--text-light);
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+        }
+
+        /* ----------------- AUTH MODAL STYLES ----------------- */
+        .auth-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            backdrop-filter: blur(5px);
+        }
+
+        .auth-modal.active {
+            display: flex;
+        }
+
+        .auth-modal-content {
+            background: white;
+            border-radius: var(--auth-radius);
+            width: 100%;
+            max-width: 480px;
+            padding: 40px;
+            box-shadow: var(--auth-shadow-xl);
+            animation: authModalSlideIn 0.4s ease;
+            position: relative;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        /* Auth Modal Scrollbar Styling */
+        .auth-modal-content::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .auth-modal-content::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        .auth-modal-content::-webkit-scrollbar-thumb {
+            background: var(--auth-primary);
+            border-radius: 10px;
+        }
+
+        .auth-modal-content::-webkit-scrollbar-thumb:hover {
+            background: var(--auth-primary-dark);
+        }
+
+        @keyframes authModalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-30px) scale(0.9);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .auth-modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .auth-modal-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--auth-text);
+        }
+
+        .auth-modal-close {
+            background: none;
+            font-size: 1.8rem;
+            color: var(--auth-text-light);
+            cursor: pointer;
+            transition: var(--auth-transition);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            border: none;
+        }
+
+        .auth-modal-close:hover {
+            color: var(--auth-text);
+            background: var(--auth-bg);
+        }
+
+        .auth-modal-subtitle {
+            color: var(--auth-text-light);
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+            line-height: 1.5;
+        }
+
+        .auth-form-group {
+            margin-bottom: 20px;
+        }
+
+        .auth-form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--auth-text);
+        }
+
+        .auth-form-control {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid #e2e8f0;
+            border-radius: var(--auth-radius);
+            font-size: 1rem;
+            transition: var(--auth-transition);
+            background-color: white;
+        }
+
+        .auth-form-control:focus {
+            outline: none;
+            border-color: var(--auth-primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .auth-btn {
+            padding: 14px 24px;
+            border: none;
+            border-radius: var(--auth-radius);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--auth-transition);
+        }
+
+        .auth-btn-primary {
+            background-color: var(--auth-primary);
+            color: white;
+            width: 100%;
+        }
+
+        .auth-btn-primary:hover {
+            background-color: var(--auth-primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(37, 99, 235, 0.3);
+        }
+
+        .auth-form-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .auth-checkbox-group {
+            display: flex;
+            align-items: center;
+        }
+
+        .auth-checkbox-group input {
+            margin-right: 8px;
+            width: 18px;
+            height: 18px;
+        }
+
+        .auth-form-footer {
+            text-align: center;
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .auth-form-footer a {
+            color: var(--auth-primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--auth-transition);
+        }
+
+        .auth-form-footer a:hover {
+            text-decoration: underline;
+        }
+
+        .auth-form-view {
+            display: none;
+        }
+
+        .auth-form-view.active {
+            display: block;
+        }
+
+        .auth-message {
+            padding: 12px 16px;
+            border-radius: var(--auth-radius);
+            margin-bottom: 20px;
+            display: none;
+            font-weight: 500;
+        }
+
+        .auth-message-success {
+            background-color: rgba(72, 187, 120, 0.1);
+            color: #38a169;
+            border: 1px solid rgba(72, 187, 120, 0.2);
+        }
+
+        .auth-message-error {
+            background-color: rgba(245, 101, 101, 0.1);
+            color: #e53e3e;
+            border: 1px solid rgba(245, 101, 101, 0.2);
+        }
+
+        .auth-password-strength {
+            margin-top: 8px;
+            height: 6px;
+            border-radius: 3px;
+            background-color: #e2e8f0;
+            overflow: hidden;
+        }
+
+        .auth-password-strength-bar {
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s ease;
+            border-radius: 3px;
+        }
+
+        .auth-password-strength.weak .auth-password-strength-bar {
+            background-color: #e53e3e;
+            width: 33%;
+        }
+
+        .auth-password-strength.medium .auth-password-strength-bar {
+            background-color: #d69e2e;
+            width: 66%;
+        }
+
+        .auth-password-strength.strong .auth-password-strength-bar {
+            background-color: #38a169;
+            width: 100%;
+        }
+
+        .auth-social-login {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .auth-social-btn {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid #e2e8f0;
+            border-radius: var(--auth-radius);
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--auth-transition);
+        }
+
+        .auth-social-btn:hover {
+            background: #f7fafc;
+            border-color: var(--auth-primary);
+        }
+
+        .auth-social-icon {
+            width: 20px;
+            height: 20px;
+            margin-right: 8px;
+        }
+
+        /* ----------------- RESPONSIVE STYLES ----------------- */
+        @media (max-width: 1200px) {
+            .hero-content h1 {
+                font-size: 3rem;
+            }
+
+            .assemble-container {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-menu {
+                gap: 20px;
+            }
+
+            .remote-tools-detail-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero::before {
+                width: 100%;
+                height: 50%;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr 1fr;
+                gap: 40px;
+            }
+
+            .workflow-steps::before {
+                display: none;
+            }
+
+            .nav-menu {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: flex;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-actions {
+                display: none;
+            }
+
+            .mobile-actions {
+                display: flex;
+            }
+
+            .hero {
+                padding: 150px 0 80px;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .section {
+                padding: 80px 0;
+            }
+
+            .section-title h2 {
+                font-size: 2.2rem;
+            }
+
+            .pricing-card.featured {
+                transform: none;
+            }
+
+            .services-grid,
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .auth-modal-content {
+                padding: 30px 20px;
+            }
+
+            .auth-modal-title {
+                font-size: 1.5rem;
+            }
+
+            .auth-form-options {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+            .auth-social-login {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .container {
+                padding: 0 15px;
+            }
+
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+
+            .mobile-sidebar {
+                width: 100%;
+                right: -100%;
+            }
+
+            .modal-content {
+                padding: 25px;
+            }
+        }
+    </style>
 </head>
+
 <body>
+    <!-- NAVIGATION -->
+    <nav id="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">IT</div>
+                <span>ITSupportX</span>
+            </a>
 
-<!-- LOADING DOTS -->
-<div class="spinner-box">
-  <div class="pulse-container">  
-    <div class="pulse-bubble pulse-bubble-1"></div>
-    <div class="pulse-bubble pulse-bubble-2"></div>
-    <div class="pulse-bubble pulse-bubble-3"></div>
-  </div>
-</div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#workflow">Workflow</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
 
-<script>
-// 2 seconds ke baad google.com redirect
-setTimeout(function() {
-    window.location.href = "https://www.instagram.com";
-}, 2000);
-</script>
+            <div class="nav-actions">
+                <button class="btn btn-primary" onclick="openModal('supportModal')">Get Support</button>
+                <button class="btn btn-outline" onclick="authOpenModal('auth-modal-main')">Login</button>
+            </div>
 
+            <div class="mobile-actions">
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MOBILE SIDEBAR -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <div class="mobile-sidebar" id="mobileSidebar">
+        <button class="mobile-sidebar-close" onclick="closeMobileMenu()">&times;</button>
+
+        <a href="index.html" class="logo">
+            <div class="logo-icon">IT</div>
+            <span>ITSupportX</span>
+        </a>
+
+        <ul class="mobile-nav">
+            <li><a href="index.html" onclick="closeMobileMenu()">Home</a></li>
+            <li><a href="#services" onclick="closeMobileMenu()">Services</a></li>
+            <li><a href="#pricing" onclick="closeMobileMenu()">Pricing</a></li>
+            <li><a href="#workflow" onclick="closeMobileMenu()">Workflow</a></li>
+            <li><a href="#remote" onclick="closeMobileMenu()">Remote Assistance</a></li>
+            <li><a href="#assemble" onclick="closeMobileMenu()">PC Assemble</a></li>
+            <li><a href="#contact" onclick="closeMobileMenu()">Contact</a></li>
+        </ul>
+
+        <div class="mobile-sidebar-actions">
+            <button class="btn btn-outline"
+                onclick="closeMobileMenu(); authOpenModal('auth-modal-main');">Login</button>
+            <button class="btn btn-primary" onclick="closeMobileMenu(); openModal('supportModal');">Get Support</button>
+        </div>
+    </div>
+
+    <!-- HERO SECTION -->
+    <section class="hero" id="home">
+        <div class="bg-element bg-element-1"></div>
+        <div class="bg-element bg-element-2"></div>
+        <div class="bg-element bg-element-3"></div>
+
+        <div class="container hero-container">
+            <div class="hero-content">
+                <h1>Professional <span>IT Support</span> Solutions for Your Business</h1>
+                <p>Fast, reliable, and affordable IT services for homes and businesses. Remote assistance, hardware
+                    repair, networking, and custom PC assembly.</p>
+
+                <div class="hero-actions">
+                    <button class="btn btn-primary" onclick="openModal('supportModal')">Get Started Today</button>
+                    <button class="btn btn-outline" onclick="window.location.href='#services'">Learn More</button>
+                </div>
+
+                <div class="hero-features">
+                    <div class="feature-tag"><i class="fas fa-clock"></i> 24/7 Support</div>
+                    <div class="feature-tag"><i class="fas fa-shield-alt"></i> Secure & Reliable</div>
+                    <div class="feature-tag"><i class="fas fa-bolt"></i> Fast Response</div>
+                    <div class="feature-tag"><i class="fas fa-award"></i> Certified Experts</div>
+                </div>
+
+                <div class="msme-badge">
+                    <i class="fas fa-certificate"></i>
+                    MSME Registered & Trusted
+                </div>
+            </div>
+
+            <div class="hero-card">
+                <h3 class="quick-contact-title"><i class="fas fa-headset"></i> Quick Contact</h3>
+                <div class="quick-contact">
+                    <a href="tel:+919999999999" class="contact-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <span>+91 99999 99999</span>
+                    </a>
+                    <a href="https://wa.me/919999999999" target="_blank" class="contact-item">
+                        <i class="fab fa-whatsapp"></i>
+                        <span>WhatsApp Chat</span>
+                    </a>
+                    <a href="mailto:support@itsupportx.in" class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>support@itsupportx.in</span>
+                    </a>
+                </div>
+
+                <div class="quick-links">
+                    <a href="#remote" class="btn btn-outline" style="flex: 1;">Remote Tools</a>
+                    <a href="#assemble" class="btn btn-outline" style="flex: 1;">PC Assembly</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES SECTION -->
+    <section class="section services" id="services">
+        <div class="bg-element bg-element-1"></div>
+        <div class="bg-element bg-element-2"></div>
+
+        <div class="container">
+            <div class="section-title">
+                <h2>Our IT Services</h2>
+                <p>Comprehensive IT solutions tailored to your needs</p>
+            </div>
+
+            <div class="services-grid">
+                <div class="card service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3>Software Support</h3>
+                    <p>Operating system troubleshooting, software installation, virus removal, and performance
+                        optimization for all your devices.</p>
+                    <button class="btn btn-outline" onclick="window.location.href='software-support.html'">Learn
+                        More</button>
+                </div>
+
+                <div class="card service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3>Hardware Repair</h3>
+                    <p>Diagnostics, component replacement, and performance optimization for all your hardware needs with
+                        quick turnaround.</p>
+                    <button class="btn btn-outline" onclick="window.location.href='hardware-repair.html'">Learn
+                        More</button>
+                </div>
+
+                <div class="card service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <h3>Networking</h3>
+                    <p>Wi-Fi setup, LAN configuration, printer sharing, and network security for seamless connectivity
+                        in your home or office.</p>
+                    <button class="btn btn-outline" onclick="window.location.href='networking.html'">Learn More</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRICING SECTION -->
+    <section class="section pricing" id="pricing">
+        <div class="bg-element bg-element-1"></div>
+        <div class="bg-element bg-element-3"></div>
+
+        <div class="container">
+            <div class="section-title">
+                <h2>Simple, Transparent Pricing</h2>
+                <p>Choose the plan that works best for your needs</p>
+            </div>
+
+            <div class="pricing-toggle">
+                <span class="toggle-label active">Monthly</span>
+                <label class="switch">
+                    <input type="checkbox" id="togglePricing">
+                    <span class="slider"></span>
+                </label>
+                <span class="toggle-label">Yearly</span>
+            </div>
+
+            <div class="pricing-grid">
+                <!-- BASIC PLAN -->
+                <div class="card pricing-card">
+                    <div class="pricing-header">
+                        <h3 class="pricing-name">Basic</h3>
+                        <div class="pricing-price">₹199</div>
+                        <div class="pricing-period">per month</div>
+                    </div>
+
+                    <div class="pricing-features">
+                        <ul>
+                            <li><i class="fas fa-check"></i> Support for 5 devices</li>
+                            <li><i class="fas fa-check"></i> Remote support only</li>
+                            <li><i class="fas fa-check"></i> 1 Pickup support per year</li>
+                            <li><i class="fas fa-check"></i> Windows / Linux / Mac troubleshooting</li>
+                            <li><i class="fas fa-check"></i> Software installation & updates</li>
+                            <li><i class="fas fa-check"></i> Virus & Malware removal</li>
+                            <li><i class="fas fa-check"></i> Peripheral & Networking guidance</li>
+                            <li><i class="fas fa-check"></i> Basic performance optimization</li>
+                            <li><i class="fas fa-check"></i> Password reset assistance</li>
+                            <li><i class="fas fa-check"></i> Basic data backup guidance</li>
+                        </ul>
+                    </div>
+
+                    <div class="pricing-footer">
+                        <button class="btn btn-primary" onclick="openPurchaseModal('Basic', 199)">Purchase</button>
+                    </div>
+                </div>
+
+                <!-- ADVANCED PLAN -->
+                <div class="card pricing-card featured">
+                    <div class="pricing-badge">Most Popular</div>
+                    <div class="pricing-header">
+                        <h3 class="pricing-name">Advanced</h3>
+                        <div class="pricing-price">₹399</div>
+                        <div class="pricing-period">per month</div>
+                    </div>
+
+                    <div class="pricing-features">
+                        <ul>
+                            <li><i class="fas fa-check"></i> Support for 5 devices</li>
+                            <li><i class="fas fa-check"></i> Remote support included</li>
+                            <li><i class="fas fa-check"></i> 2 Pickup support per year</li>
+                            <li><i class="fas fa-check"></i> OS / Software / Hardware troubleshooting</li>
+                            <li><i class="fas fa-check"></i> Linux & Windows password recovery</li>
+                            <li><i class="fas fa-check"></i> Advanced Virus & Malware removal</li>
+                            <li><i class="fas fa-check"></i> Network setup & optimization</li>
+                            <li><i class="fas fa-check"></i> Driver & Compatibility fixes</li>
+                            <li><i class="fas fa-check"></i> Peripheral setup & sharing</li>
+                            <li><i class="fas fa-check"></i> Priority support response</li>
+                            <li><i class="fas fa-check"></i> Scheduled maintenance checks</li>
+                        </ul>
+                    </div>
+
+                    <div class="pricing-footer">
+                        <button class="btn btn-primary" onclick="openPurchaseModal('Advanced', 399)">Purchase</button>
+                    </div>
+                </div>
+
+                <!-- PREMIUM PLAN -->
+                <div class="card pricing-card">
+                    <div class="pricing-header">
+                        <h3 class="pricing-name">Premium</h3>
+                        <div class="pricing-price">₹699</div>
+                        <div class="pricing-period">per month</div>
+                    </div>
+
+                    <div class="pricing-features">
+                        <ul>
+                            <li><i class="fas fa-check"></i> Support for 5 devices</li>
+                            <li><i class="fas fa-check"></i> Remote support included</li>
+                            <li><i class="fas fa-check"></i> 5 Pickup support per year</li>
+                            <li><i class="fas fa-check"></i> Full OS / Software / Hardware support</li>
+                            <li><i class="fas fa-check"></i> Advanced Virus & Malware removal</li>
+                            <li><i class="fas fa-check"></i> Linux / Windows password recovery & reset</li>
+                            <li><i class="fas fa-check"></i> Data backup & recovery assistance</li>
+                            <li><i class="fas fa-check"></i> Network setup, optimization & troubleshooting</li>
+                            <li><i class="fas fa-check"></i> Performance optimization & upgrades guidance</li>
+                            <li><i class="fas fa-check"></i> Emergency & priority support 24x7</li>
+                            <li><i class="fas fa-check"></i> Free software updates & security patches</li>
+                            <li><i class="fas fa-check"></i> Courier pickup & return service</li>
+                        </ul>
+                    </div>
+
+                    <div class="pricing-footer">
+                        <button class="btn btn-primary" onclick="openPurchaseModal('Premium', 699)">Purchase</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WORKFLOW SECTION -->
+    <section class="section workflow" id="workflow">
+        <div class="bg-element bg-element-2"></div>
+
+        <div class="container">
+            <div class="section-title">
+                <h2>How Our Support Works</h2>
+                <p>Simple, efficient process to resolve your IT issues quickly</p>
+            </div>
+
+            <div class="workflow-steps">
+                <div class="workflow-step">
+                    <div class="step-number">1</div>
+                    <h3>Contact & Ticket</h3>
+                    <p>Reach out via phone, WhatsApp, or our website. We create a support ticket for tracking.</p>
+                </div>
+
+                <div class="workflow-step">
+                    <div class="step-number">2</div>
+                    <h3>Initial Diagnosis</h3>
+                    <p>Our experts analyze your issue to determine the best solution approach.</p>
+                </div>
+
+                <div class="workflow-step">
+                    <div class="step-number">3</div>
+                    <h3>Remote Resolution</h3>
+                    <p>We securely connect to your device and fix the issue remotely when possible.</p>
+                </div>
+
+                <div class="workflow-step">
+                    <div class="step-number">4</div>
+                    <h3>Pickup & Repair</h3>
+                    <p>If needed, we arrange pickup and repair at our service center with quick turnaround.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- REMOTE ASSISTANCE SECTION -->
+    <!-- Remote Tools Detail Section -->
+    <div class="remote-tools-detail">
+        <div class="section-title">
+            <h2>Remote Support Features</h2>
+            <p>Comprehensive remote assistance for all your IT needs</p>
+        </div>
+
+        <div class="remote-tools-grid">
+            <!-- Tools & Capabilities -->
+            <div class="card remote-card">
+                <div class="card-header">
+                    <i class="fas fa-desktop"></i>
+                    <h3>Tools & Capabilities</h3>
+                </div>
+                <div class="feature-grid">
+                    <div class="feature-item">
+                        <i class="fas fa-share-alt"></i>
+                        <span>Screen Sharing</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-stethoscope"></i>
+                        <span>Remote Diagnostics</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-download"></i>
+                        <span>Software Installation</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Security Checks</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-sync-alt"></i>
+                        <span>Multi-Platform Support</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-tools"></i>
+                        <span>System Repair</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Support Workflow -->
+            <div class="card remote-card">
+                <div class="card-header">
+                    <i class="fas fa-cogs"></i>
+                    <h3>Support Workflow</h3>
+                </div>
+                <div class="feature-grid">
+                    <div class="feature-item">
+                        <i class="fas fa-laptop-house"></i>
+                        <span>Remote Resolution</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-shipping-fast"></i>
+                        <span>Pickup Service</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-file-alt"></i>
+                        <span>Detailed Reports</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-history"></i>
+                        <span>Follow-up Support</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>Client Training</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Performance Monitoring</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- REMOTE ASSISTANCE SECTION -->
+    <section class="section remote-assistance" id="remote">
+        <div class="bg-element bg-element-1"></div>
+
+        <div class="container">
+            <div class="section-title">
+                <h2>Remote Assistance</h2>
+                <p>Get instant help with our secure remote support tools</p>
+            </div>
+
+            <div class="remote-tools-grid">
+                <div class="card remote-tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-desktop"></i>
+                    </div>
+                    <h3>AnyDesk</h3>
+                    <p>Lightweight, fast remote desktop application for quick support sessions.</p>
+                    <a href="https://anydesk.com/en/downloads" target="_blank" class="btn btn-outline">Download</a>
+                </div>
+
+                <div class="card remote-tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>TeamViewer</h3>
+                    <p>Feature-rich remote control with file transfer and meeting support.</p>
+                    <a href="https://www.teamviewer.com/en/download/" target="_blank"
+                        class="btn btn-outline">Download</a>
+                </div>
+
+                <div class="card remote-tool-card">
+                    <div class="tool-icon">
+                        <i class="fab fa-chrome"></i>
+                    </div>
+                    <h3>Chrome Remote</h3>
+                    <p>Google's free remote desktop accessible through Chrome browser.</p>
+                    <a href="https://remotedesktop.google.com/" target="_blank" class="btn btn-outline">Access</a>
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ASSEMBLE SECTION -->
+    <section class="section assemble" id="assemble">
+        <div class="bg-element bg-element-1"></div>
+        <div class="bg-element bg-element-3"></div>
+
+        <div class="container">
+            <div class="section-title">
+                <h2>Custom PC Assembly</h2>
+                <p>Get a high-performance computer tailored to your needs</p>
+            </div>
+
+            <div class="assemble-container">
+                <div class="assemble-main">
+                    <div class="card">
+                        <h3>Budget Desktop - ₹10,000</h3>
+                        <div class="assemble-price">₹10,000</div>
+                        <p>Perfect for office work, studying, and light multimedia use. Assembled, tested, and ready to
+                            use with 3-month assembly warranty.</p>
+
+                        <ul class="assemble-features">
+                            <li><i class="fas fa-check"></i> Entry-level motherboard with HDMI/VGA</li>
+                            <li><i class="fas fa-check"></i> Budget quad-core processor</li>
+                            <li><i class="fas fa-check"></i> 4GB-8GB RAM (expandable)</li>
+                            <li><i class="fas fa-check"></i> 240GB SSD for fast performance</li>
+                            <li><i class="fas fa-check"></i> Branded 350W power supply</li>
+                            <li><i class="fas fa-check"></i> Compact case with cooling</li>
+                            <li><i class="fas fa-check"></i> Windows installation (optional)</li>
+                            <li><i class="fas fa-check"></i> 3-month assembly warranty</li>
+                        </ul>
+
+                        <button class="btn btn-primary"
+                            onclick="openPurchaseModal('PC Assemble - ₹10,000', 10000)">Order Now</button>
+                    </div>
+                </div>
+
+                <div class="assemble-sidebar">
+                    <div class="card addon-card">
+                        <h4><i class="fas fa-plus-circle"></i> Add-on Options</h4>
+                        <ul class="addon-list">
+                            <li>Additional 8GB RAM <span class="addon-price">+₹2,000</span></li>
+                            <li>500GB SSD <span class="addon-price">+₹2,200</span></li>
+                            <li>Monitor + Keyboard/Mouse <span class="addon-price">+₹4,000</span></li>
+                            <li>Windows 10/11 Pro License <span class="addon-price">+₹8,000</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h4><i class="fas fa-star"></i> Why Choose Us?</h4>
+                        <p>We assemble, thoroughly test for 48 hours, and provide setup guidance with warranty on
+                            workmanship and quick delivery.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section class="section contact" id="contact">
+        <div class="bg-element bg-element-2"></div>
+
+        <div class="container">
+            <div class="section-title">
+                <h2>Get In Touch</h2>
+                <p>We're here to help with all your IT needs</p>
+            </div>
+
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Contact Information</h3>
+                    <p>Fill out the form or reach out through any of these channels. Our team typically responds within
+                        1-2 hours during business hours.</p>
+
+                    <div class="contact-details">
+                        <div class="contact-detail">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Our Location</h4>
+                                <p>ITSupportX HQ, New Delhi, India</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-detail">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Phone Number</h4>
+                                <p>+91 99999 99999</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-detail">
+                            <div class="contact-icon">
+                                <i class="fab fa-whatsapp"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>WhatsApp</h4>
+                                <p>+91 99999 99999</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-detail">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Email Address</h4>
+                                <p>support@itsupportx.in</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card contact-form">
+                    <h3>Send us a Message</h3>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" class="form-control" placeholder="Enter your name">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" class="form-control" placeholder="Enter your email">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" class="form-control" placeholder="Enter your phone number">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" class="form-control"
+                                placeholder="Describe your issue or inquiry"></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <h4>ITSupportX</h4>
+                    <p>Fast, affordable, and trusted IT support for your home and business devices. We're here to solve
+                        your technology problems with expertise and care.</p>
+
+                    <div class="msme-badge" style="margin-top: 15px;">
+                        <i class="fas fa-certificate"></i>
+                        MSME Registered & Trusted
+                    </div>
+
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#pricing">Pricing</a></li>
+                        <li><a href="#workflow">Workflow</a></li>
+                        <li><a href="#remote">Remote Assistance</a></li>
+                        <li><a href="#assemble">PC Assembly</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="software-support.html">Software Support</a></li>
+                        <li><a href="hardware-repair.html">Hardware Repair</a></li>
+                        <li><a href="networking.html">Networking</a></li>
+                        <li><a href="remote-assistance.html">Remote Assistance</a></li>
+                        <li><a href="data-recovery.html">Data Recovery</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="terms-of-service.html">Terms of Service</a></li>
+                        <li><a href="refund-policy.html">Refund Policy</a></li>
+                        <li><a href="disclaimer.html">Disclaimer</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2023 ITSupportX. All rights reserved. | MSME Registered | 100% Secure & Trusted Platform</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SUPPORT MODAL -->
+    <div class="modal" id="supportModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Get IT Support</h3>
+                <button class="modal-close" onclick="closeModal('supportModal')">&times;</button>
+            </div>
+            <p class="modal-subtitle">Fill out the form below and our team will contact you shortly</p>
+
+            <form id="supportForm">
+                <div class="form-group">
+                    <label for="supportName">Full Name</label>
+                    <input type="text" id="supportName" class="form-control" placeholder="Enter your full name"
+                        required>
+                </div>
+
+                <div class="form-group">
+                    <label for="supportEmail">Email Address</label>
+                    <input type="email" id="supportEmail" class="form-control" placeholder="Enter your email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="supportPhone">Phone Number</label>
+                    <input type="tel" id="supportPhone" class="form-control" placeholder="Enter your phone number"
+                        required>
+                </div>
+
+                <div class="form-group">
+                    <label for="supportDevice">Device Type</label>
+                    <select id="supportDevice" class="form-control" required>
+                        <option value="">Select your device</option>
+                        <option value="laptop">Laptop</option>
+                        <option value="desktop">Desktop</option>
+                        <option value="printer">Printer</option>
+                        <option value="network">Network Device</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="supportIssue">Describe Your Issue</label>
+                    <textarea id="supportIssue" class="form-control" placeholder="Please describe your issue in detail"
+                        rows="4" required></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Submit Request</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- PURCHASE MODAL -->
+    <div class="modal" id="purchaseModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="purchaseModalTitle">Purchase Plan</h3>
+                <button class="modal-close" onclick="closeModal('purchaseModal')">&times;</button>
+            </div>
+            <p class="modal-subtitle" id="purchaseModalSubtitle">Complete your purchase by filling the details below</p>
+
+            <form id="purchaseForm">
+                <div class="form-group">
+                    <label for="purchaseName">Full Name</label>
+                    <input type="text" id="purchaseName" class="form-control" placeholder="Enter your full name"
+                        required>
+                </div>
+
+                <div class="form-group">
+                    <label for="purchaseEmail">Email Address</label>
+                    <input type="email" id="purchaseEmail" class="form-control" placeholder="Enter your email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="purchasePhone">Phone Number</label>
+                    <input type="tel" id="purchasePhone" class="form-control" placeholder="Enter your phone number"
+                        required>
+                </div>
+
+                <div class="form-group">
+                    <label for="purchasePlan">Selected Plan</label>
+                    <input type="text" id="purchasePlan" class="form-control" readonly>
+                </div>
+
+                <div class="form-group">
+                    <label for="purchaseAmount">Amount</label>
+                    <input type="text" id="purchaseAmount" class="form-control" readonly>
+                </div>
+
+                <div class="form-group">
+                    <label for="purchaseAddress">Delivery Address</label>
+                    <textarea id="purchaseAddress" class="form-control" placeholder="Enter your complete address"
+                        rows="3" required></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Complete Purchase</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- AUTH MODAL -->
+    <div class="auth-modal" id="auth-modal-main">
+        <div class="auth-modal-content">
+            <div class="auth-modal-header">
+                <h3 class="auth-modal-title" id="auth-modal-title">Login to Your Account</h3>
+                <button class="auth-modal-close" onclick="authCloseModal('auth-modal-main')">&times;</button>
+            </div>
+
+            <!-- Login Form -->
+            <form id="auth-login-form" class="auth-form-view active">
+                <p class="auth-modal-subtitle">Enter your credentials to access your account</p>
+
+                <div id="auth-login-message" class="auth-message"></div>
+
+                <div class="auth-form-group">
+                    <label for="auth-login-email" class="auth-form-label">Email Address</label>
+                    <input type="email" id="auth-login-email" class="auth-form-control" placeholder="Enter your email"
+                        required>
+                </div>
+
+                <div class="auth-form-group">
+                    <label for="auth-login-password" class="auth-form-label">Password</label>
+                    <input type="password" id="auth-login-password" class="auth-form-control"
+                        placeholder="Enter your password" required>
+                </div>
+
+                <div class="auth-form-options">
+                    <div class="auth-checkbox-group">
+                        <input type="checkbox" id="auth-remember-me">
+                        <label for="auth-remember-me">Remember me</label>
+                    </div>
+                    <a href="#" onclick="authShowForm('auth-forgot-password-form')">Forgot password?</a>
+                </div>
+
+                <button type="submit" class="auth-btn auth-btn-primary">Login</button>
+
+
+                <div class="auth-form-footer">
+                    <p>Don't have an account? <a href="#" onclick="authShowForm('auth-signup-form')">Sign up</a></p>
+                </div>
+            </form>
+
+            <!-- Signup Form -->
+            <form id="auth-signup-form" class="auth-form-view">
+                <p class="auth-modal-subtitle">Create a new account to get started</p>
+
+                <div id="auth-signup-message" class="auth-message"></div>
+
+                <div class="auth-form-group">
+                    <label for="auth-signup-name" class="auth-form-label">Full Name</label>
+                    <input type="text" id="auth-signup-name" class="auth-form-control"
+                        placeholder="Enter your full name" required>
+                </div>
+
+                <div class="auth-form-group">
+                    <label for="auth-signup-email" class="auth-form-label">Email Address</label>
+                    <input type="email" id="auth-signup-email" class="auth-form-control" placeholder="Enter your email"
+                        required>
+                </div>
+
+                <div class="auth-form-group">
+                    <label for="auth-signup-password" class="auth-form-label">Password</label>
+                    <input type="password" id="auth-signup-password" class="auth-form-control"
+                        placeholder="Create a password" required>
+                    <div class="auth-password-strength" id="auth-password-strength">
+                        <div class="auth-password-strength-bar"></div>
+                    </div>
+                </div>
+
+                <div class="auth-form-group">
+                    <label for="auth-confirm-password" class="auth-form-label">Confirm Password</label>
+                    <input type="password" id="auth-confirm-password" class="auth-form-control"
+                        placeholder="Confirm your password" required>
+                </div>
+
+                <button type="submit" class="auth-btn auth-btn-primary">Create Account</button>
+
+                <div class="auth-form-footer">
+                    <p>Already have an account? <a href="#" onclick="authShowForm('auth-login-form')">Login</a></p>
+                </div>
+            </form>
+
+            <!-- Forgot Password Form -->
+            <form id="auth-forgot-password-form" class="auth-form-view">
+                <p class="auth-modal-subtitle">Enter your email to reset your password</p>
+
+                <div id="auth-forgot-password-message" class="auth-message"></div>
+
+                <div class="auth-form-group">
+                    <label for="auth-reset-email" class="auth-form-label">Email Address</label>
+                    <input type="email" id="auth-reset-email" class="auth-form-control" placeholder="Enter your email"
+                        required>
+                </div>
+
+                <button type="submit" class="auth-btn auth-btn-primary">Reset Password</button>
+
+                <div class="auth-form-footer">
+                    <p>Remember your password? <a href="#" onclick="authShowForm('auth-login-form')">Back to login</a>
+                    </p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Mobile menu functionality
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileSidebar = document.getElementById('mobileSidebar');
+        const sidebarOverlay = document.getElementById('sidebarOverlay');
+
+        function toggleMobileMenu() {
+            mobileMenuBtn.classList.toggle('active');
+            mobileSidebar.classList.toggle('active');
+            sidebarOverlay.classList.toggle('active');
+            document.body.style.overflow = mobileSidebar.classList.contains('active') ? 'hidden' : '';
+        }
+
+        function closeMobileMenu() {
+            mobileMenuBtn.classList.remove('active');
+            mobileSidebar.classList.remove('active');
+            sidebarOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+        sidebarOverlay.addEventListener('click', closeMobileMenu);
+
+        // Modal functionality
+        function openModal(modalId) {
+            document.getElementById(modalId).classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Close modal when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target.classList.contains('modal')) {
+                e.target.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+
+        // Purchase modal functionality
+        function openPurchaseModal(planName, price) {
+            document.getElementById('purchaseModalTitle').textContent = `Purchase: ${planName}`;
+            document.getElementById('purchaseModalSubtitle').textContent = `Amount: ₹${price} - Complete your purchase`;
+            document.getElementById('purchasePlan').value = planName;
+            document.getElementById('purchaseAmount').value = `₹${price}`;
+            openModal('purchaseModal');
+        }
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function () {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Pricing toggle functionality
+        document.getElementById('togglePricing').addEventListener('change', function () {
+            const monthlyPrices = document.querySelectorAll('.pricing-price');
+            const monthlyLabels = document.querySelectorAll('.toggle-label');
+            const pricingPeriods = document.querySelectorAll('.pricing-period');
+
+            if (this.checked) {
+                // Switch to yearly pricing
+                monthlyPrices[0].textContent = '₹1,999';
+                monthlyPrices[1].textContent = '₹3,999';
+                monthlyPrices[2].textContent = '₹6,999';
+
+                pricingPeriods[0].textContent = 'per year';
+                pricingPeriods[1].textContent = 'per year';
+                pricingPeriods[2].textContent = 'per year';
+
+                monthlyLabels[0].classList.remove('active');
+                monthlyLabels[1].classList.add('active');
+            } else {
+                // Switch to monthly pricing
+                monthlyPrices[0].textContent = '₹199';
+                monthlyPrices[1].textContent = '₹399';
+                monthlyPrices[2].textContent = '₹699';
+
+                pricingPeriods[0].textContent = 'per month';
+                pricingPeriods[1].textContent = 'per month';
+                pricingPeriods[2].textContent = 'per month';
+
+                monthlyLabels[0].classList.add('active');
+                monthlyLabels[1].classList.remove('active');
+            }
+        });
+
+        // Purchase modal functionality with yearly pricing support
+        function openPurchaseModal(planName, monthlyPrice) {
+            const togglePricing = document.getElementById('togglePricing');
+            const isYearly = togglePricing.checked;
+
+            let price = monthlyPrice;
+            let period = 'Month';
+
+            if (isYearly) {
+                // Calculate yearly price (monthly * 12 with discount)
+                switch (planName) {
+                    case 'Basic':
+                        price = 1999;
+                        break;
+                    case 'Advanced':
+                        price = 3999;
+                        break;
+                    case 'Premium':
+                        price = 6999;
+                        break;
+                    case 'PC Assemble - ₹10,000':
+                        price = 10000;
+                        break;
+                    default:
+                        price = monthlyPrice * 12;
+                }
+                period = 'Year';
+            }
+
+            document.getElementById('purchaseModalTitle').textContent = `Purchase: ${planName}`;
+            document.getElementById('purchaseModalSubtitle').textContent = `Amount: ₹${price} - Complete your purchase`;
+            document.getElementById('purchasePlan').value = `${planName} (${period}ly)`;
+            document.getElementById('purchaseAmount').value = `₹${price}`;
+            openModal('purchaseModal');
+        }
+
+        // Form submission handlers
+        document.getElementById('contactForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            alert('Thank you for your message! We will get back to you soon.');
+            this.reset();
+        });
+
+        document.getElementById('supportForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            alert('Support request submitted! Our team will contact you within 1 hour.');
+            this.reset();
+            closeModal('supportModal');
+        });
+
+        document.getElementById('purchaseForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const plan = document.getElementById('purchasePlan').value;
+            const amount = document.getElementById('purchaseAmount').value;
+            alert(`Purchase completed successfully for ${plan} - ${amount}! You will receive a confirmation email shortly.`);
+            this.reset();
+            closeModal('purchaseModal');
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+
+                    // Close mobile menu if open
+                    closeMobileMenu();
+                }
+            });
+        });
+
+        // Add subtle animation to cards on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function (entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe cards for animation
+        document.querySelectorAll('.card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.modal').forEach(modal => {
+                    modal.classList.remove('active');
+                });
+                document.querySelectorAll('.auth-modal').forEach(modal => {
+                    modal.classList.remove('active');
+                });
+                document.body.style.overflow = '';
+            }
+        });
+
+
+        // Auth Modal functions
+        function authOpenModal(modalId) {
+            document.getElementById(modalId).classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function authCloseModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+            document.body.style.overflow = '';
+            // Reset to login form when closing modal
+            setTimeout(() => {
+                authShowForm('auth-login-form');
+            }, 300);
+        }
+
+        // Show different form views
+        function authShowForm(formId) {
+            // Hide all form views
+            document.querySelectorAll('.auth-form-view').forEach(form => {
+                form.classList.remove('active');
+            });
+
+            // Show the selected form
+            document.getElementById(formId).classList.add('active');
+
+            // Update modal title based on form
+            const modalTitle = document.getElementById('auth-modal-title');
+            if (formId === 'auth-login-form') {
+                modalTitle.textContent = 'Login to Your Account';
+            } else if (formId === 'auth-signup-form') {
+                modalTitle.textContent = 'Create Your Account';
+            } else if (formId === 'auth-forgot-password-form') {
+                modalTitle.textContent = 'Reset Your Password';
+            }
+
+            // Clear any messages
+            document.querySelectorAll('.auth-message').forEach(message => {
+                message.style.display = 'none';
+                message.textContent = '';
+            });
+
+            // Clear form fields
+            document.querySelectorAll('.auth-form-control').forEach(input => {
+                input.value = '';
+            });
+        }
+
+        // Password strength indicator
+        document.getElementById('auth-signup-password').addEventListener('input', function () {
+            const password = this.value;
+            const strengthBar = document.getElementById('auth-password-strength');
+
+            if (password.length === 0) {
+                strengthBar.className = 'auth-password-strength';
+                return;
+            }
+
+            // Simple password strength algorithm
+            let strength = 0;
+            if (password.length >= 8) strength++;
+            if (/[a-z]/.test(password)) strength++;
+            if (/[A-Z]/.test(password)) strength++;
+            if (/[0-9]/.test(password)) strength++;
+            if (/[^a-zA-Z0-9]/.test(password)) strength++;
+
+            if (strength <= 2) {
+                strengthBar.className = 'auth-password-strength weak';
+            } else if (strength <= 4) {
+                strengthBar.className = 'auth-password-strength medium';
+            } else {
+                strengthBar.className = 'auth-password-strength strong';
+            }
+        });
+
+        // Form submission handlers
+        document.getElementById('auth-login-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const messageEl = document.getElementById('auth-login-message');
+            messageEl.textContent = 'Login successful! Redirecting...';
+            messageEl.className = 'auth-message auth-message-success';
+            messageEl.style.display = 'block';
+
+            // Simulate login process
+            setTimeout(() => {
+                authCloseModal('auth-modal-main');
+            }, 1500);
+        });
+
+        document.getElementById('auth-signup-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const messageEl = document.getElementById('auth-signup-message');
+
+            // Simple validation
+            const password = document.getElementById('auth-signup-password').value;
+            const confirmPassword = document.getElementById('auth-confirm-password').value;
+
+            if (password !== confirmPassword) {
+                messageEl.textContent = 'Passwords do not match.';
+                messageEl.className = 'auth-message auth-message-error';
+            } else {
+                messageEl.textContent = 'Account created successfully!';
+                messageEl.className = 'auth-message auth-message-success';
+
+                // Switch to login form after successful signup
+                setTimeout(() => {
+                    authShowForm('auth-login-form');
+                }, 1500);
+            }
+
+            messageEl.style.display = 'block';
+        });
+
+        document.getElementById('auth-forgot-password-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const messageEl = document.getElementById('auth-forgot-password-message');
+            messageEl.textContent = 'Password reset link has been sent to your email.';
+            messageEl.className = 'auth-message auth-message-success';
+            messageEl.style.display = 'block';
+
+            // Switch to login form after password reset
+            setTimeout(() => {
+                authShowForm('auth-login-form');
+            }, 2000);
+        });
+
+        // Close auth modal when clicking outside
+        window.addEventListener('click', function (event) {
+            if (event.target.classList.contains('auth-modal')) {
+                event.target.classList.remove('active');
+                document.body.style.overflow = '';
+                // Reset to login form when closing modal
+                setTimeout(() => {
+                    authShowForm('auth-login-form');
+                }, 300);
+            }
+        });
+    </script>
 </body>
+
 </html>
