@@ -1797,11 +1797,6 @@
             color: var(--text);
         }
 
-        .contact-info p {
-            color: var(--text-light);
-            margin-bottom: 35px;
-            font-size: 1.1rem;
-        }
 
         .contact-details {
             display: flex;
@@ -1881,6 +1876,107 @@
         textarea.form-control {
             min-height: 140px;
             resize: vertical;
+        }
+
+        /* ----------------- CONTACT SECTION MOBILE FIX ----------------- */
+        @media (max-width: 992px) {
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .contact-info {
+                padding: 0 20px;
+                /* Add side padding for mobile */
+            }
+        }
+
+        @media (max-width: 768px) {
+            .contact-container {
+                gap: 30px;
+            }
+
+            .contact-info {
+                padding: 0 25px;
+                /* More padding for smaller screens */
+            }
+
+            .contact-info h3 {
+                font-size: 1.8rem;
+                margin-bottom: 15px;
+            }
+
+            .contact-info p {
+                font-size: 1rem;
+                margin-bottom: 30px;
+            }
+
+            .contact-details {
+                gap: 20px;
+            }
+
+            .contact-detail {
+                gap: 15px;
+            }
+
+            .contact-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+
+            .contact-text h4 {
+                font-size: 1.1rem;
+            }
+
+            .contact-text p {
+                font-size: 0.95rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .contact-info {
+                padding: 0 20px;
+            }
+
+            .contact-info h3 {
+                font-size: 1.6rem;
+            }
+
+            .contact-info p {
+                font-size: 0.95rem;
+                margin-bottom: 25px;
+            }
+
+            .contact-details {
+                gap: 18px;
+            }
+
+            .contact-detail {
+                gap: 12px;
+            }
+
+            .contact-icon {
+                width: 45px;
+                height: 45px;
+                font-size: 1.1rem;
+            }
+
+            .contact-text h4 {
+                font-size: 1rem;
+                margin-bottom: 5px;
+            }
+
+            .contact-text p {
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Extra small devices */
+        @media (max-width: 360px) {
+            .contact-info {
+                padding: 0 15px;
+            }
         }
 
         /* ----------------- FOOTER ----------------- */
