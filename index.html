@@ -237,7 +237,6 @@
             width: 300px;
             height: 300px;
             top: 10%;
-            left: 5%;
             animation: float 20s infinite ease-in-out;
         }
 
@@ -245,7 +244,6 @@
             width: 200px;
             height: 200px;
             bottom: 15%;
-            right: 8%;
             animation: float 15s infinite ease-in-out reverse;
         }
 
@@ -1096,7 +1094,6 @@
 
         .feature-grid {
             padding: 25px;
-            display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 20px;
             background: white;
@@ -1205,55 +1202,311 @@
         .assemble {
             background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
             position: relative;
+            overflow: hidden;
+            /* Prevent overall section overflow */
         }
 
         .assemble-container {
             display: grid;
             grid-template-columns: 2fr 1fr;
             gap: 50px;
+            align-items: start;
+            width: 100%;
+            max-width: 100%;
+            overflow: visible;
+            /* Ensure container doesn't scroll */
         }
 
         .assemble-main {
             display: flex;
             flex-direction: column;
             gap: 25px;
-        }
-
-        .assemble-price {
-            font-size: 3rem;
-            font-weight: 800;
-            color: var(--primary);
-            margin-bottom: 10px;
-            display: inline-block;
-        }
-
-        .assemble-features {
-            margin: 25px 0;
-        }
-
-        .assemble-features li {
-            padding: 10px 0;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .assemble-features li i {
-            color: var(--secondary);
-            font-size: 1.1rem;
+            width: 100%;
+            min-width: 0;
+            /* Important for grid items to prevent overflow */
         }
 
         .assemble-sidebar {
             display: flex;
             flex-direction: column;
             gap: 25px;
+            width: 100%;
+            min-width: 0;
+            /* Important for grid items to prevent overflow */
         }
 
-        .addon-card {
+        /* Premium Card Styling */
+        .premium-card {
+            position: relative;
+            overflow: visible;
+            border: 2px solid var(--primary);
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .package-badge {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--secondary), var(--secondary-dark));
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            box-shadow: var(--shadow-lg);
+            z-index: 10;
+            white-space: nowrap;
+            /* Prevent text wrapping */
+        }
+
+        .package-header {
+            text-align: center;
+            padding: 30px 20px 20px;
+            border-bottom: 2px solid var(--border);
+            background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .package-header h3 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--text);
+            margin-bottom: 15px;
+            word-wrap: break-word;
+            /* Prevent long text overflow */
+        }
+
+        .assemble-price {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 5px;
+            line-height: 1;
+            word-wrap: break-word;
+            /* Prevent price overflow */
+        }
+
+        .price-note {
+            color: var(--text-light);
+            font-size: 1rem;
+            font-weight: 500;
+            word-wrap: break-word;
+            /* Prevent text overflow */
+        }
+
+        /* Package Highlights */
+        .package-highlights {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
             padding: 25px;
+            background: var(--bg);
+            border-radius: var(--radius);
+            margin: 20px;
+            width: calc(100% - 40px);
+            /* Account for margins */
+            box-sizing: border-box;
         }
 
-        .addon-card h4 {
+        .highlight-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 15px;
+            background: white;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            transition: var(--transition);
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .highlight-item:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+
+        .highlight-item i {
+            color: var(--primary);
+            font-size: 1.3rem;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(37, 99, 235, 0.1);
+            border-radius: 10px;
+            flex-shrink: 0;
+            /* Prevent icon from shrinking */
+        }
+
+        .highlight-item span {
+            font-weight: 600;
+            color: var(--text);
+            word-wrap: break-word;
+            /* Prevent text overflow */
+        }
+
+        /* Specifications */
+        .specifications {
+            padding: 0 25px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .specifications h4 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            word-wrap: break-word;
+            /* Prevent text overflow */
+        }
+
+        .spec-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            width: 100%;
+        }
+
+        .spec-category {
+            background: var(--bg);
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .spec-category h5 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary-light);
+            word-wrap: break-word;
+            /* Prevent text overflow */
+        }
+
+        .spec-category ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .spec-category li {
+            padding: 8px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text);
+            word-wrap: break-word;
+            /* Prevent text overflow */
+        }
+
+        .spec-category li i {
+            color: var(--secondary);
+            width: 20px;
+            flex-shrink: 0;
+            /* Prevent icon from shrinking */
+        }
+
+        /* Warranty Info */
+        .warranty-info {
+            padding: 25px;
+            background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+            border-radius: var(--radius);
+            margin: 20px;
+            border: 1px solid var(--primary-light);
+            width: calc(100% - 40px);
+            /* Account for margins */
+            box-sizing: border-box;
+        }
+
+        .warranty-info h4 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            word-wrap: break-word;
+            /* Prevent text overflow */
+        }
+
+        .warranty-info h4 i {
+            color: var(--primary);
+        }
+
+        .warranty-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            width: 100%;
+        }
+
+        .warranty-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .warranty-item i {
+            color: var(--secondary);
+            font-size: 1.1rem;
+            flex-shrink: 0;
+            /* Prevent icon from shrinking */
+        }
+
+        .warranty-item span {
+            font-weight: 500;
+            color: var(--text);
+            word-wrap: break-word;
+            /* Prevent text overflow */
+        }
+
+        /* CTA Button */
+        .assemble-cta {
+            margin: 0 25px 25px;
+            padding: 18px 30px;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        /* Sidebar Cards */
+        .assemble-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .addon-card,
+        .process-card,
+        .support-card {
+            padding: 25px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .addon-card h4,
+        .process-card h4,
+        .support-card h4 {
             font-size: 1.3rem;
             font-weight: 700;
             margin-bottom: 20px;
@@ -1261,27 +1514,273 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            word-wrap: break-word;
+            /* Prevent text overflow */
         }
 
-        .addon-card h4 i {
+        .addon-card h4 i,
+        .process-card h4 i,
+        .support-card h4 i {
             color: var(--primary);
         }
 
-        .addon-list li {
-            padding: 12px 0;
+        /* Addon List */
+        .addon-list {
             display: flex;
-            justify-content: space-between;
-            border-bottom: 1px dashed var(--border);
-            transition: var(--transition);
+            flex-direction: column;
+            gap: 15px;
+            width: 100%;
         }
 
-        .addon-list li:hover {
+        .addon-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            background: var(--bg);
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            transition: var(--transition);
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .addon-item:hover {
             transform: translateX(5px);
+            border-color: var(--primary);
+        }
+
+        .addon-info {
+            flex: 1;
+            min-width: 0;
+            /* Important for text truncation */
+        }
+
+        .addon-info h5 {
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 5px;
+            word-wrap: break-word;
+            /* Prevent text overflow */
+        }
+
+        .addon-info p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin: 0;
+            word-wrap: break-word;
+            /* Prevent text overflow */
         }
 
         .addon-price {
             font-weight: 700;
             color: var(--primary);
+            font-size: 1.1rem;
+            flex-shrink: 0;
+            /* Prevent price from wrapping */
+            margin-left: 10px;
+        }
+
+        /* Process Steps */
+        .process-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 100%;
+        }
+
+        .process-step {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            width: 100%;
+        }
+
+        .step-number {
+            width: 35px;
+            height: 35px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+            /* Prevent number from shrinking */
+        }
+
+        .step-content {
+            flex: 1;
+            min-width: 0;
+            /* Important for text truncation */
+        }
+
+        .step-content h5 {
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 5px;
+            word-wrap: break-word;
+            /* Prevent text overflow */
+        }
+
+        .step-content p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin: 0;
+            word-wrap: break-word;
+            /* Prevent text overflow */
+        }
+
+        /* Support Features */
+        .support-features {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 100%;
+        }
+
+        .support-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            background: var(--bg);
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            transition: var(--transition);
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .support-item:hover {
+            transform: translateX(5px);
+            border-color: var(--primary);
+        }
+
+        .support-item i {
+            color: var(--primary);
+            width: 20px;
+            flex-shrink: 0;
+            /* Prevent icon from shrinking */
+        }
+
+        .support-item span {
+            font-weight: 500;
+            color: var(--text);
+            word-wrap: break-word;
+            /* Prevent text overflow */
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .assemble-container {
+                gap: 40px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .assemble-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .package-highlights {
+                grid-template-columns: 1fr;
+                margin: 15px;
+                width: calc(100% - 30px);
+            }
+
+            .spec-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .warranty-features {
+                grid-template-columns: 1fr;
+            }
+
+            .warranty-info {
+                margin: 15px;
+                width: calc(100% - 30px);
+            }
+
+            .assemble-cta {
+                margin: 0 15px 15px;
+                width: calc(100% - 30px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .assemble-container {
+                gap: 25px;
+            }
+
+            .assemble-price {
+                font-size: 2.8rem;
+            }
+
+            .package-header h3 {
+                font-size: 1.5rem;
+            }
+
+            .assemble-cta {
+                font-size: 1.1rem;
+                padding: 15px 20px;
+            }
+
+            .package-header {
+                padding: 25px 15px 15px;
+            }
+
+            .specifications {
+                padding: 0 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .assemble-container {
+                gap: 20px;
+            }
+
+            .package-highlights,
+            .specifications,
+            .warranty-info {
+                margin: 10px;
+            }
+
+            .package-highlights {
+                width: calc(100% - 20px);
+                padding: 20px;
+            }
+
+            .warranty-info {
+                width: calc(100% - 20px);
+                padding: 20px;
+            }
+
+            .assemble-price {
+                font-size: 2.5rem;
+            }
+
+            .assemble-cta {
+                margin: 0 10px 10px;
+                width: calc(100% - 20px);
+                padding: 15px;
+            }
+
+            .addon-card,
+            .process-card,
+            .support-card {
+                padding: 20px;
+            }
+
+            .highlight-item,
+            .warranty-item,
+            .addon-item,
+            .support-item {
+                padding: 12px;
+            }
         }
 
         /* ----------------- CONTACT SECTION ----------------- */
@@ -1486,8 +1985,16 @@
             backdrop-filter: blur(5px);
         }
 
+        /* Ensure modal display fix for all modals */
         .modal.active {
-            display: flex;
+            display: flex !important;
+            opacity: 1;
+            visibility: visible;
+        }
+
+        #hardwareRepairModal .modal-content,
+        #networkingModal .modal-content {
+            max-width: 900px;
         }
 
         .modal-content {
@@ -1985,6 +2492,225 @@
                 padding: 25px;
             }
         }
+
+
+        /* ----------------- SERIVICES MODAL STYLES ----------------- */
+
+        /* Software Support Modal Styles */
+        .services-categories {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .service-category {
+            background: var(--bg);
+            border-radius: var(--radius);
+            padding: 25px;
+            border: 1px solid var(--border);
+        }
+
+        .category-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--primary);
+        }
+
+        .category-title i {
+            color: var(--primary);
+            font-size: 1.2rem;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(37, 99, 235, 0.1);
+            border-radius: 8px;
+        }
+
+        .service-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .service-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            padding: 12px 15px;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            transition: var(--transition);
+        }
+
+        .service-item:hover {
+            transform: translateX(5px);
+            border-color: var(--primary);
+            box-shadow: var(--shadow);
+        }
+
+        .service-number {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            font-weight: 700;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .service-text {
+            color: var(--text);
+            font-weight: 500;
+            line-height: 1.5;
+            flex: 1;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+        }
+
+        .modal-actions .btn {
+            flex: 1;
+            max-width: 200px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .service-category {
+                padding: 20px 15px;
+            }
+
+            .category-title {
+                font-size: 1.1rem;
+            }
+
+            .service-item {
+                padding: 10px 12px;
+            }
+
+            .service-text {
+                font-size: 0.95rem;
+            }
+
+            .modal-actions {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .modal-actions .btn {
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .services-categories {
+                gap: 20px;
+            }
+
+            .service-category {
+                padding: 15px 12px;
+            }
+
+            .service-item {
+                padding: 8px 10px;
+            }
+
+            .service-number {
+                width: 24px;
+                height: 24px;
+                font-size: 0.8rem;
+            }
+
+            .service-text {
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Force button to be clickable on desktop */
+        .service-card .btn-outline {
+            cursor: pointer !important;
+            pointer-events: auto !important;
+            position: relative !important;
+            z-index: 1000 !important;
+            transform: translateZ(0);
+        }
+
+        /* Remove any potential overlays */
+        .service-card::before,
+        .service-card::after {
+            pointer-events: none !important;
+        }
+
+        /* Ensure no parent elements are blocking clicks */
+        .service-card,
+        .service-card * {
+            pointer-events: auto !important;
+        }
+
+        /* Specific fix for desktop hover states */
+        @media (hover: hover) and (pointer: fine) {
+            .btn-outline:hover {
+                background: var(--primary) !important;
+                color: white !important;
+                transform: translateY(-3px) !important;
+            }
+
+            .service-card .btn-outline {
+                cursor: pointer !important;
+            }
+        }
+
+
+        /* COntact Form validation styles */
+        .error-message {
+            color: #e53e3e;
+            font-size: 0.875rem;
+            margin-top: 5px;
+            display: none;
+            font-weight: 500;
+        }
+
+        .form-control.error {
+            border-color: #e53e3e;
+            box-shadow: 0 0 0 3px rgba(229, 62, 62, 0.1);
+        }
+
+        .form-group label {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .form-group label::after {
+            content: '*';
+            color: #e53e3e;
+            font-weight: bold;
+        }
+
+        /* Optional: Success state */
+        .form-control.valid {
+            border-color: #38a169;
+            box-shadow: 0 0 0 3px rgba(56, 161, 105, 0.1);
+        }
     </style>
 </head>
 
@@ -2121,8 +2847,7 @@
                     <h3>Software Support</h3>
                     <p>Operating system troubleshooting, software installation, virus removal, and performance
                         optimization for all your devices.</p>
-                    <button class="btn btn-outline" onclick="window.location.href='software-support.html'">Learn
-                        More</button>
+                    <button class="btn btn-outline" onclick="openModal('softwareSupportModal')">Learn More</button>
                 </div>
 
                 <div class="card service-card">
@@ -2132,8 +2857,7 @@
                     <h3>Hardware Repair</h3>
                     <p>Diagnostics, component replacement, and performance optimization for all your hardware needs with
                         quick turnaround.</p>
-                    <button class="btn btn-outline" onclick="window.location.href='hardware-repair.html'">Learn
-                        More</button>
+                    <button class="btn btn-outline" onclick="openModal('hardwareRepairModal')">Learn More</button>
                 </div>
 
                 <div class="card service-card">
@@ -2143,11 +2867,15 @@
                     <h3>Networking</h3>
                     <p>Wi-Fi setup, LAN configuration, printer sharing, and network security for seamless connectivity
                         in your home or office.</p>
-                    <button class="btn btn-outline" onclick="window.location.href='networking.html'">Learn More</button>
+                    <button class="btn btn-outline" onclick="openModal('networkingModal')">Learn More</button>
                 </div>
             </div>
         </div>
     </section>
+
+
+
+
 
     <!-- PRICING SECTION -->
     <section class="section pricing" id="pricing">
@@ -2182,7 +2910,7 @@
                         <ul>
                             <li><i class="fas fa-check"></i> Support for 5 devices</li>
                             <li><i class="fas fa-check"></i> Remote support only</li>
-                            <li><i class="fas fa-check"></i> 1 Pickup support per year</li>
+                            <li><i class="fas fa-check"></i> 2 Pickup support per year</li>
                             <li><i class="fas fa-check"></i> Windows / Linux / Mac troubleshooting</li>
                             <li><i class="fas fa-check"></i> Software installation & updates</li>
                             <li><i class="fas fa-check"></i> Virus & Malware removal</li>
@@ -2211,7 +2939,7 @@
                         <ul>
                             <li><i class="fas fa-check"></i> Support for 5 devices</li>
                             <li><i class="fas fa-check"></i> Remote support included</li>
-                            <li><i class="fas fa-check"></i> 2 Pickup support per year</li>
+                            <li><i class="fas fa-check"></i> 5 Pickup support per year</li>
                             <li><i class="fas fa-check"></i> OS / Software / Hardware troubleshooting</li>
                             <li><i class="fas fa-check"></i> Linux & Windows password recovery</li>
                             <li><i class="fas fa-check"></i> Advanced Virus & Malware removal</li>
@@ -2240,7 +2968,7 @@
                         <ul>
                             <li><i class="fas fa-check"></i> Support for 5 devices</li>
                             <li><i class="fas fa-check"></i> Remote support included</li>
-                            <li><i class="fas fa-check"></i> 5 Pickup support per year</li>
+                            <li><i class="fas fa-check"></i> 10 Pickup support per year</li>
                             <li><i class="fas fa-check"></i> Full OS / Software / Hardware support</li>
                             <li><i class="fas fa-check"></i> Advanced Virus & Malware removal</li>
                             <li><i class="fas fa-check"></i> Linux / Windows password recovery & reset</li>
@@ -2431,49 +3159,192 @@
 
         <div class="container">
             <div class="section-title">
-                <h2>Custom PC Assembly</h2>
-                <p>Get a high-performance computer tailored to your needs</p>
+                <h2>Professional PC Assembly</h2>
+                <p>Get a complete high-performance desktop computer assembled and delivered to your doorstep</p>
             </div>
 
             <div class="assemble-container">
                 <div class="assemble-main">
-                    <div class="card">
-                        <h3>Budget Desktop - ₹10,000</h3>
-                        <div class="assemble-price">₹10,000</div>
-                        <p>Perfect for office work, studying, and light multimedia use. Assembled, tested, and ready to
-                            use with 3-month assembly warranty.</p>
+                    <div class="card premium-card">
+                        <div class="package-badge">Most Popular</div>
+                        <div class="package-header">
+                            <h3>Complete Desktop Package</h3>
+                            <div class="assemble-price">₹10,000</div>
+                            <div class="price-note">All Inclusive - No Hidden Costs</div>
+                        </div>
 
-                        <ul class="assemble-features">
-                            <li><i class="fas fa-check"></i> Entry-level motherboard with HDMI/VGA</li>
-                            <li><i class="fas fa-check"></i> Budget quad-core processor</li>
-                            <li><i class="fas fa-check"></i> 4GB-8GB RAM (expandable)</li>
-                            <li><i class="fas fa-check"></i> 240GB SSD for fast performance</li>
-                            <li><i class="fas fa-check"></i> Branded 350W power supply</li>
-                            <li><i class="fas fa-check"></i> Compact case with cooling</li>
-                            <li><i class="fas fa-check"></i> Windows installation (optional)</li>
-                            <li><i class="fas fa-check"></i> 3-month assembly warranty</li>
-                        </ul>
+                        <div class="package-highlights">
+                            <div class="highlight-item">
+                                <i class="fas fa-shield-alt"></i>
+                                <span>1 Year Comprehensive Warranty</span>
+                            </div>
+                            <div class="highlight-item">
+                                <i class="fas fa-tools"></i>
+                                <span>Professional Assembly & Testing</span>
+                            </div>
+                            <div class="highlight-item">
+                                <i class="fas fa-shipping-fast"></i>
+                                <span>Free Delivery & Setup</span>
+                            </div>
+                        </div>
 
-                        <button class="btn btn-primary"
-                            onclick="openPurchaseModal('PC Assemble - ₹10,000', 10000)">Order Now</button>
+                        <div class="specifications">
+                            <h4>Complete System Specifications:</h4>
+                            <div class="spec-grid">
+                                <div class="spec-category">
+                                    <h5>Processor & Memory</h5>
+                                    <ul>
+                                        <li><i class="fas fa-microchip"></i> Intel/AMD Quad-Core Processor</li>
+                                        <li><i class="fas fa-memory"></i> 8GB DDR4 RAM (Expandable to 16GB)</li>
+                                        <li><i class="fas fa-hdd"></i> 240GB SSD + 500GB HDD Storage</li>
+                                    </ul>
+                                </div>
+                                <div class="spec-category">
+                                    <h5>Graphics & Display</h5>
+                                    <ul>
+                                        <li><i class="fas fa-desktop"></i> Integrated Graphics with HDMI/VGA</li>
+                                        <li><i class="fas fa-tv"></i> Support for Dual Monitor Setup</li>
+                                        <li><i class="fas fa-gamepad"></i> Basic Gaming & Multimedia Ready</li>
+                                    </ul>
+                                </div>
+                                <div class="spec-category">
+                                    <h5>Connectivity & Ports</h5>
+                                    <ul>
+                                        <li><i class="fas fa-usb"></i> Multiple USB 3.0 & 2.0 Ports</li>
+                                        <li><i class="fas fa-wifi"></i> Wi-Fi & Ethernet Connectivity</li>
+                                        <li><i class="fas fa-headphones"></i> Audio Jacks & Speaker Support</li>
+                                    </ul>
+                                </div>
+                                <div class="spec-category">
+                                    <h5>Power & Cooling</h5>
+                                    <ul>
+                                        <li><i class="fas fa-bolt"></i> Branded 450W Power Supply</li>
+                                        <li><i class="fas fa-wind"></i> Optimized Airflow Cabinet</li>
+                                        <li><i class="fas fa-thermometer-half"></i> Efficient Cooling System</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="warranty-info">
+                            <h4><i class="fas fa-certificate"></i> Warranty Coverage</h4>
+                            <div class="warranty-features">
+                                <div class="warranty-item">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>1 Year on Assembly & Workmanship</span>
+                                </div>
+                                <div class="warranty-item">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>6 Months on Components</span>
+                                </div>
+                                <div class="warranty-item">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>Free Technical Support</span>
+                                </div>
+                                <div class="warranty-item">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>On-site Service Available</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-primary assemble-cta"
+                            onclick="openPurchaseModal('Complete Desktop Package - ₹10,000', 10000)">
+                            <i class="fas fa-shopping-cart"></i>
+                            Order Complete Package
+                        </button>
                     </div>
                 </div>
 
                 <div class="assemble-sidebar">
                     <div class="card addon-card">
-                        <h4><i class="fas fa-plus-circle"></i> Add-on Options</h4>
-                        <ul class="addon-list">
-                            <li>Additional 8GB RAM <span class="addon-price">+₹2,000</span></li>
-                            <li>500GB SSD <span class="addon-price">+₹2,200</span></li>
-                            <li>Monitor + Keyboard/Mouse <span class="addon-price">+₹4,000</span></li>
-                            <li>Windows 10/11 Pro License <span class="addon-price">+₹8,000</span></li>
-                        </ul>
+                        <h4><i class="fas fa-plus-circle"></i> Upgrade Options</h4>
+                        <div class="addon-list">
+                            <div class="addon-item">
+                                <div class="addon-info">
+                                    <h5>Performance Boost</h5>
+                                    <p>16GB RAM + 500GB SSD</p>
+                                </div>
+                                <span class="addon-price">+₹4,000</span>
+                            </div>
+                            <div class="addon-item">
+                                <div class="addon-info">
+                                    <h5>Gaming Ready</h5>
+                                    <p>Dedicated Graphics Card</p>
+                                </div>
+                                <span class="addon-price">+₹8,000</span>
+                            </div>
+                            <div class="addon-item">
+                                <div class="addon-info">
+                                    <h5>Complete Setup</h5>
+                                    <p>Monitor + Keyboard + Mouse</p>
+                                </div>
+                                <span class="addon-price">+₹6,000</span>
+                            </div>
+                            <div class="addon-item">
+                                <div class="addon-info">
+                                    <h5>Professional OS</h5>
+                                    <p>Windows 11 Pro Licensed</p>
+                                </div>
+                                <span class="addon-price">+₹8,000</span>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="card">
-                        <h4><i class="fas fa-star"></i> Why Choose Us?</h4>
-                        <p>We assemble, thoroughly test for 48 hours, and provide setup guidance with warranty on
-                            workmanship and quick delivery.</p>
+                    <div class="card process-card">
+                        <h4><i class="fas fa-cogs"></i> Our Assembly Process</h4>
+                        <div class="process-steps">
+                            <div class="process-step">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h5>Component Selection</h5>
+                                    <p>Quality-checked compatible parts</p>
+                                </div>
+                            </div>
+                            <div class="process-step">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h5>Professional Assembly</h5>
+                                    <p>Expert assembly with cable management</p>
+                                </div>
+                            </div>
+                            <div class="process-step">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <h5>Rigorous Testing</h5>
+                                    <p>48-hour stress testing & benchmarking</p>
+                                </div>
+                            </div>
+                            <div class="process-step">
+                                <div class="step-number">4</div>
+                                <div class="step-content">
+                                    <h5>Delivery & Setup</h5>
+                                    <p>Free delivery with basic setup guidance</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card support-card">
+                        <h4><i class="fas fa-headset"></i> After-Sales Support</h4>
+                        <div class="support-features">
+                            <div class="support-item">
+                                <i class="fas fa-phone-alt"></i>
+                                <span>24/7 Technical Support</span>
+                            </div>
+                            <div class="support-item">
+                                <i class="fas fa-tools"></i>
+                                <span>Free Remote Assistance</span>
+                            </div>
+                            <div class="support-item">
+                                <i class="fas fa-truck"></i>
+                                <span>Quick Replacement Service</span>
+                            </div>
+                            <div class="support-item">
+                                <i class="fas fa-graduation-cap"></i>
+                                <span>Basic Usage Training</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -2543,24 +3414,29 @@
                     <h3>Send us a Message</h3>
                     <form id="contactForm">
                         <div class="form-group">
-                            <label for="name">Full Name</label>
-                            <input type="text" id="name" class="form-control" placeholder="Enter your name">
+                            <label for="name">Full Name *</label>
+                            <input type="text" id="name" class="form-control" placeholder="Enter your name" required>
+                            <div class="error-message" id="nameError"></div>
                         </div>
 
                         <div class="form-group">
-                            <label for="email">Email Address</label>
-                            <input type="email" id="email" class="form-control" placeholder="Enter your email">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" class="form-control" placeholder="Enter your email" required>
+                            <div class="error-message" id="emailError"></div>
                         </div>
 
                         <div class="form-group">
-                            <label for="phone">Phone Number</label>
-                            <input type="tel" id="phone" class="form-control" placeholder="Enter your phone number">
+                            <label for="phone">Phone Number *</label>
+                            <input type="tel" id="phone" class="form-control" placeholder="Enter your phone number"
+                                required pattern="[0-9]{10}">
+                            <div class="error-message" id="phoneError"></div>
                         </div>
 
                         <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" class="form-control"
-                                placeholder="Describe your issue or inquiry"></textarea>
+                            <label for="message">Message *</label>
+                            <textarea id="message" class="form-control" placeholder="Describe your issue or inquiry"
+                                required></textarea>
+                            <div class="error-message" id="messageError"></div>
                         </div>
 
                         <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
@@ -2631,6 +3507,417 @@
             </div>
         </div>
     </footer>
+
+    <!-- SOFTWARE SUPPORT MODAL -->
+    <div class="modal" id="softwareSupportModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Software Support Services</h3>
+                <button class="modal-close" onclick="closeModal('softwareSupportModal')">&times;</button>
+            </div>
+            <p class="modal-subtitle">Comprehensive software solutions for all your devices</p>
+
+            <div class="services-categories">
+                <!-- OS Troubleshooting -->
+                <div class="service-category">
+                    <h4 class="category-title">
+                        <i class="fas fa-cogs"></i>
+                        OS Troubleshooting
+                    </h4>
+                    <div class="service-list">
+                        <div class="service-item">
+                            <span class="service-number">1</span>
+                            <span class="service-text">Windows / Linux / Mac issues</span>
+                        </div>
+                        <div class="service-item">
+                            <span class="service-number">2</span>
+                            <span class="service-text">Blue screen / PC not starting</span>
+                        </div>
+                        <div class="service-item">
+                            <span class="service-number">3</span>
+                            <span class="service-text">Linux / Windows password reset / break guidance</span>
+                        </div>
+                        <div class="service-item">
+                            <span class="service-number">4</span>
+                            <span class="service-text">OS upgrade & migration</span>
+                        </div>
+                        <div class="service-item">
+                            <span class="service-number">5</span>
+                            <span class="service-text">System restore / rollback</span>
+                        </div>
+                        <div class="service-item">
+                            <span class="service-number">6</span>
+                            <span class="service-text">Bootloader repair / GRUB issues</span>
+                        </div>
+                        <div class="service-item">
+                            <span class="service-number">7</span>
+                            <span class="service-text">Disk management & partition issues</span>
+                        </div>
+                        <div class="service-item">
+                            <span class="service-number">8</span>
+                            <span class="service-text">Startup & boot errors</span>
+                        </div>
+                        <div class="service-item">
+                            <span class="service-number">9</span>
+                            <span class="service-text">Scheduled backups / recovery</span>
+                        </div>
+                        <div class="service-item">
+                            <span class="service-number">10</span>
+                            <span class="service-text">OS performance optimization</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Software Installation -->
+                <div class="service-category">
+                    <h4 class="category-title">
+                        <i class="fas fa-download"></i>
+                        Software Installation
+                    </h4>
+                    <div class="service-list">
+                        <div class="service-item">
+                            <span class="service-number">1</span>
+                            <span class="service-text">Application installation & updates</span>
+                        </div>
+                        <div class="service-item">
+                            <span class="service-number">2</span>
+                            <span class="service-text">Automatic updates setup</span>
+                        </div>
+                        <div class="service-item">
+                            <span class="service-number">3</span>
+                            <span class="service-text">License activation & verification</span>
+                        </div>
+                        <div class="service-item">
+                            <span class="service-number">4</span>
+                            <span class="service-text">Driver installation & update</span>
+                        </div>
+                        <div class="service-item">
+                            <span class="service-number">5</span>
+                            <span class="service-text">Software dependency issues</span>
+                        </div>
+                        <div class="service-item">
+                            <span class="service-number">6</span>
+                            <span class="service-text">Office suite / Productivity tools</span>
+                        </div>
+                        <div class="service-item">
+                            <span class="service-number">7</span>
+                            <span class="service-text">Multimedia software setup</span>
+                        </div>
+                        <div class="service-item">
+                            <span class="service-number">8</span>
+                            <span class="service-text">IDE / Programming tools installation</span>
+                        </div>
+                        <div class="service-item">
+                            <span class="service-number">9</span>
+                            <span class="service-text">Custom configuration & setup</span>
+                        </div>
+                        <div class="service-item">
+                            <span class="service-number">10</span>
+                            <span class="service-text">Software activation errors</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Virus & Malware Removal -->
+                <div class="service-category">
+                    <h4 class="category-title">
+                        <i class="fas fa-shield-alt"></i>
+                        Virus & Malware Removal
+                    </h4>
+                    <div class="service-list">
+                        <div class="service-item">
+                            <span class="service-number">1</span>
+                            <span class="service-text">Malware & virus scanning</span>
+                        </div>
+                        <div class="service-item">
+                            <span class="service-number">2</span>
+                            <span class="service-text">Antivirus installation & configuration</span>
+                        </div>
+                        <div class="service-item">
+                            <span class="service-number">3</span>
+                            <span class="service-text">Ransomware protection guidance</span>
+                        </div>
+                        <div class="service-item">
+                            <span class="service-number">4</span>
+                            <span class="service-text">Spyware / Adware removal</span>
+                        </div>
+                        <div class="service-item">
+                            <span class="service-number">5</span>
+                            <span class="service-text">Rootkit detection & removal</span>
+                        </div>
+                        <div class="service-item">
+                            <span class="service-number">6</span>
+                            <span class="service-text">Browser hijack & pop-up removal</span>
+                        </div>
+                        <div class="service-item">
+                            <span class="service-number">7</span>
+                            <span class="service-text">Email & phishing issue resolution</span>
+                        </div>
+                        <div class="service-item">
+                            <span class="service-number">8</span>
+                            <span class="service-text">Firewall & security settings configuration</span>
+                        </div>
+                        <div class="service-item">
+                            <span class="service-number">9</span>
+                            <span class="service-text">Security optimization & patches</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-actions">
+                <button class="btn btn-primary"
+                    onclick="openModal('supportModal'); closeModal('softwareSupportModal');">
+                    <i class="fas fa-headset"></i>
+                    Get Support Now
+                </button>
+                <button class="btn btn-outline" onclick="closeModal('softwareSupportModal')">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- HARDWARE SUPPORT MODAL -->
+    <!-- HARDWARE REPAIR MODAL -->
+    <div class="modal" id="hardwareRepairModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Hardware Repair Services</h3>
+                <button class="modal-close" onclick="closeModal('hardwareRepairModal')">&times;</button>
+            </div>
+            <p class="modal-subtitle">Complete hardware diagnostics and repair solutions</p>
+
+            <div class="services-categories">
+                <!-- Hardware Guidance -->
+                <div class="service-category">
+                    <h4 class="category-title">
+                        <i class="fas fa-tools"></i>
+                        Hardware Guidance
+                    </h4>
+                    <div class="service-list">
+                        <div class="service-item">
+                            <span class="service-number">1</span>
+                            <span class="service-text">Basic Troubleshooting</span>
+                        </div>
+                        <div class="service-item">
+                            <span class="service-number">2</span>
+                            <span class="service-text">PC not starting / Blue screen</span>
+                        </div>
+                        <div class="service-item">
+                            <span class="service-number">3</span>
+                            <span class="service-text">Peripheral setup: printer, scanner, webcam</span>
+                        </div>
+                        <div class="service-item">
+                            <span class="service-number">4</span>
+                            <span class="service-text">Power supply issues</span>
+                        </div>
+                        <div class="service-item">
+                            <span class="service-number">5</span>
+                            <span class="service-text">Monitor / display troubleshooting</span>
+                        </div>
+                        <div class="service-item">
+                            <span class="service-number">6</span>
+                            <span class="service-text">Keyboard / mouse / peripheral problems</span>
+                        </div>
+                        <div class="service-item">
+                            <span class="service-number">7</span>
+                            <span class="service-text">Motherboard / RAM compatibility issues</span>
+                        </div>
+                        <div class="service-item">
+                            <span class="service-number">8</span>
+                            <span class="service-text">BIOS update / configuration</span>
+                        </div>
+                        <div class="service-item">
+                            <span class="service-number">9</span>
+                            <span class="service-text">Hard disk / SSD errors</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Performance Optimization -->
+                <div class="service-category">
+                    <h4 class="category-title">
+                        <i class="fas fa-tachometer-alt"></i>
+                        Performance Optimization
+                    </h4>
+                    <div class="service-list">
+                        <div class="service-item">
+                            <span class="service-number">1</span>
+                            <span class="service-text">RAM, Storage, CPU check</span>
+                        </div>
+                        <div class="service-item">
+                            <span class="service-number">2</span>
+                            <span class="service-text">Cooling & hardware health tips</span>
+                        </div>
+                        <div class="service-item">
+                            <span class="service-number">3</span>
+                            <span class="service-text">Performance tuning & upgrade suggestions</span>
+                        </div>
+                        <div class="service-item">
+                            <span class="service-number">4</span>
+                            <span class="service-text">Hard disk / SSD optimization</span>
+                        </div>
+                        <div class="service-item">
+                            <span class="service-number">5</span>
+                            <span class="service-text">Graphics card / GPU optimization</span>
+                        </div>
+                        <div class="service-item">
+                            <span class="service-number">6</span>
+                            <span class="service-text">Peripheral calibration (printers, monitors)</span>
+                        </div>
+                        <div class="service-item">
+                            <span class="service-number">7</span>
+                            <span class="service-text">Thermal paste replacement guidance</span>
+                        </div>
+                        <div class="service-item">
+                            <span class="service-number">8</span>
+                            <span class="service-text">Dust cleaning & ventilation tips</span>
+                        </div>
+                        <div class="service-item">
+                            <span class="service-number">9</span>
+                            <span class="service-text">Power management optimization</span>
+                        </div>
+                        <div class="service-item">
+                            <span class="service-number">10</span>
+                            <span class="service-text">GPU / CPU overclocking guidance</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-actions">
+                <button class="btn btn-primary" onclick="openModal('supportModal'); closeModal('hardwareRepairModal');">
+                    <i class="fas fa-headset"></i>
+                    Get Hardware Support
+                </button>
+                <button class="btn btn-outline" onclick="closeModal('hardwareRepairModal')">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- NETWORKING SUPPORT MODAL -->
+
+    <!-- NETWORKING MODAL -->
+    <div class="modal" id="networkingModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Networking Services</h3>
+                <button class="modal-close" onclick="closeModal('networkingModal')">&times;</button>
+            </div>
+            <p class="modal-subtitle">Complete networking solutions for home and office</p>
+
+            <div class="services-categories">
+                <!-- Wi-Fi & Router Setup -->
+                <div class="service-category">
+                    <h4 class="category-title">
+                        <i class="fas fa-wifi"></i>
+                        Wi-Fi & Router Setup
+                    </h4>
+                    <div class="service-list">
+                        <div class="service-item">
+                            <span class="service-number">1</span>
+                            <span class="service-text">Connection troubleshooting</span>
+                        </div>
+                        <div class="service-item">
+                            <span class="service-number">2</span>
+                            <span class="service-text">Signal optimization & firewall settings</span>
+                        </div>
+                        <div class="service-item">
+                            <span class="service-number">3</span>
+                            <span class="service-text">SSID & password setup</span>
+                        </div>
+                        <div class="service-item">
+                            <span class="service-number">4</span>
+                            <span class="service-text">Router firmware update</span>
+                        </div>
+                        <div class="service-item">
+                            <span class="service-number">5</span>
+                            <span class="service-text">Guest network configuration</span>
+                        </div>
+                        <div class="service-item">
+                            <span class="service-number">6</span>
+                            <span class="service-text">VPN setup & troubleshooting</span>
+                        </div>
+                        <div class="service-item">
+                            <span class="service-number">7</span>
+                            <span class="service-text">QoS setup (priority for devices)</span>
+                        </div>
+                        <div class="service-item">
+                            <span class="service-number">8</span>
+                            <span class="service-text">Bandwidth monitoring</span>
+                        </div>
+                        <div class="service-item">
+                            <span class="service-number">9</span>
+                            <span class="service-text">Port forwarding setup</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LAN & Printer Sharing -->
+                <div class="service-category">
+                    <h4 class="category-title">
+                        <i class="fas fa-network-wired"></i>
+                        LAN & Printer Sharing
+                    </h4>
+                    <div class="service-list">
+                        <div class="service-item">
+                            <span class="service-number">1</span>
+                            <span class="service-text">Local network setup</span>
+                        </div>
+                        <div class="service-item">
+                            <span class="service-number">2</span>
+                            <span class="service-text">Shared devices configuration</span>
+                        </div>
+                        <div class="service-item">
+                            <span class="service-number">3</span>
+                            <span class="service-text">File / folder sharing setup</span>
+                        </div>
+                        <div class="service-item">
+                            <span class="service-number">4</span>
+                            <span class="service-text">Network drive mapping</span>
+                        </div>
+                        <div class="service-item">
+                            <span class="service-number">5</span>
+                            <span class="service-text">Printer connectivity issues</span>
+                        </div>
+                        <div class="service-item">
+                            <span class="service-number">6</span>
+                            <span class="service-text">IP / DNS troubleshooting</span>
+                        </div>
+                        <div class="service-item">
+                            <span class="service-number">7</span>
+                            <span class="service-text">Network security check</span>
+                        </div>
+                        <div class="service-item">
+                            <span class="service-number">8</span>
+                            <span class="service-text">Switch / hub troubleshooting</span>
+                        </div>
+                        <div class="service-item">
+                            <span class="service-number">9</span>
+                            <span class="service-text">Remote file access setup</span>
+                        </div>
+                        <div class="service-item">
+                            <span class="service-number">10</span>
+                            <span class="service-text">Shared printer queue management</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-actions">
+                <button class="btn btn-primary" onclick="openModal('supportModal'); closeModal('networkingModal');">
+                    <i class="fas fa-headset"></i>
+                    Get Networking Support
+                </button>
+                <button class="btn btn-outline" onclick="closeModal('networkingModal')">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
 
     <!-- SUPPORT MODAL -->
     <div class="modal" id="supportModal">
@@ -2964,12 +4251,156 @@
             openModal('purchaseModal');
         }
 
-        // Form submission handlers
+        // Form submission handlers with validation
         document.getElementById('contactForm').addEventListener('submit', function (e) {
             e.preventDefault();
-            alert('Thank you for your message! We will get back to you soon.');
-            this.reset();
+
+            // Reset previous error messages
+            clearErrorMessages();
+
+            // Validate all fields
+            const isValid = validateForm();
+
+            if (isValid) {
+                alert('Thank you for your message! We will get back to you soon.');
+                this.reset();
+            }
         });
+
+        // Form validation function
+        function validateForm() {
+            let isValid = true;
+
+            // Name validation
+            const name = document.getElementById('name').value.trim();
+            if (name === '') {
+                showError('nameError', 'Full name is required');
+                isValid = false;
+            } else if (name.length < 2) {
+                showError('nameError', 'Name must be at least 2 characters long');
+                isValid = false;
+            }
+
+            // Email validation
+            const email = document.getElementById('email').value.trim();
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (email === '') {
+                showError('emailError', 'Email address is required');
+                isValid = false;
+            } else if (!emailRegex.test(email)) {
+                showError('emailError', 'Please enter a valid email address');
+                isValid = false;
+            }
+
+            // Phone validation
+            const phone = document.getElementById('phone').value.trim();
+            const phoneRegex = /^[0-9]{10}$/;
+            if (phone === '') {
+                showError('phoneError', 'Phone number is required');
+                isValid = false;
+            } else if (!phoneRegex.test(phone)) {
+                showError('phoneError', 'Please enter a valid 10-digit phone number');
+                isValid = false;
+            }
+
+            // Message validation
+            const message = document.getElementById('message').value.trim();
+            if (message === '') {
+                showError('messageError', 'Message is required');
+                isValid = false;
+            } else if (message.length < 10) {
+                showError('messageError', 'Message must be at least 10 characters long');
+                isValid = false;
+            }
+
+            return isValid;
+        }
+
+        // Show error message
+        function showError(elementId, message) {
+            const errorElement = document.getElementById(elementId);
+            errorElement.textContent = message;
+            errorElement.style.display = 'block';
+
+            // Add error class to input
+            const inputId = elementId.replace('Error', '');
+            const inputElement = document.getElementById(inputId);
+            inputElement.classList.add('error');
+        }
+
+        // Clear all error messages
+        function clearErrorMessages() {
+            const errorMessages = document.querySelectorAll('.error-message');
+            errorMessages.forEach(error => {
+                error.textContent = '';
+                error.style.display = 'none';
+            });
+
+            // Remove error classes from inputs
+            const inputs = document.querySelectorAll('.form-control');
+            inputs.forEach(input => {
+                input.classList.remove('error');
+            });
+        }
+
+        // Real-time validation (optional)
+        document.querySelectorAll('#contactForm .form-control').forEach(input => {
+            input.addEventListener('blur', function () {
+                const fieldName = this.id;
+                validateField(fieldName);
+            });
+
+            input.addEventListener('input', function () {
+                // Clear error when user starts typing
+                const errorElement = document.getElementById(this.id + 'Error');
+                if (errorElement) {
+                    errorElement.textContent = '';
+                    errorElement.style.display = 'none';
+                    this.classList.remove('error');
+                }
+            });
+        });
+
+        // Individual field validation
+        function validateField(fieldName) {
+            const value = document.getElementById(fieldName).value.trim();
+
+            switch (fieldName) {
+                case 'name':
+                    if (value === '') {
+                        showError('nameError', 'Full name is required');
+                    } else if (value.length < 2) {
+                        showError('nameError', 'Name must be at least 2 characters long');
+                    }
+                    break;
+
+                case 'email':
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (value === '') {
+                        showError('emailError', 'Email address is required');
+                    } else if (!emailRegex.test(value)) {
+                        showError('emailError', 'Please enter a valid email address');
+                    }
+                    break;
+
+                case 'phone':
+                    const phoneRegex = /^[0-9]{10}$/;
+                    if (value === '') {
+                        showError('phoneError', 'Phone number is required');
+                    } else if (!phoneRegex.test(value)) {
+                        showError('phoneError', 'Please enter a valid 10-digit phone number');
+                    }
+                    break;
+
+                case 'message':
+                    if (value === '') {
+                        showError('messageError', 'Message is required');
+                    } else if (value.length < 10) {
+                        showError('messageError', 'Message must be at least 10 characters long');
+                    }
+                    break;
+            }
+        }
 
         document.getElementById('supportForm').addEventListener('submit', function (e) {
             e.preventDefault();
@@ -3181,6 +4612,25 @@
                 }, 300);
             }
         });
+
+        // Debug function to check modal state
+        function debugModal(modalId) {
+            const modal = document.getElementById(modalId);
+            console.log('Modal:', modal);
+            console.log('Modal classes:', modal.classList);
+            console.log('Modal display:', window.getComputedStyle(modal).display);
+        }
+
+        // Make sure these functions are in your script
+        function openModal(modalId) {
+            document.getElementById(modalId).classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+            document.body.style.overflow = '';
+        }
     </script>
 </body>
 
